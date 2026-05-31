@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Solutions – Sistemas de AI internos</title>
+  <meta name="description" content="AI Solutions cria websites automaticamente, gera agentes de atendimento de CS inteligentes, automatiza faturamento e integra toda a sua operação com IA avançada." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+            heading: ['Plus Jakarta Sans', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              dark: '#0B0B0F',
+              slate: '#13131A',
+              purple: '#6366f1',
+              violet: '#8b5cf6',
+              emerald: '#10b981',
+              teal: '#0d9488',
+              rose: '#f43f5e',
+              amber: '#f59e0b',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+    
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    
+    h1, h2, h3, h4, .font-heading {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .hero-bg {
+      background-color: #0B0B0F;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.18) 0px, transparent 50%),
+        radial-gradient(at 50% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(16, 185, 129, 0.1) 0px, transparent 50%);
+    }
+
+    .glass-nav {
+      background: rgba(11, 11, 15, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 antialiased selection:bg-purple-500 selection:text-white">
+
+<!-- NAVIGATION -->
+<nav class="glass-nav sticky top-0 z-50 flex items-center justify-between px-6 md:px-12 py-4">
+  <div class="flex items-center gap-10">
+    <!-- AI Solutions Logo -->
+    <a href="../index.html" class="flex items-center gap-2.5 font-heading font-extrabold text-[19px] text-white tracking-tight transition hover:opacity-90" id="nav-logo">
+      <div class="relative w-7 h-7 bg-indigo-600 rounded-lg flex items-center justify-center text-white overflow-hidden shadow-md shadow-indigo-200">
+        <div class="absolute -inset-0.5 bg-gradient-to-tr from-indigo-500 to-violet-600 rounded-lg"></div>
+        <span class="relative font-heading text-xs font-black tracking-widest pl-0.5">AI</span>
+      </div>
+      <span class="flex items-center gap-1.5 text-white">
+        AI Solutions 
+        <span class="text-xs bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 font-semibold px-1.5 py-0.2 rounded-full uppercase tracking-wider scale-90">SaaS</span>
+      </span>
+    </a>
+    
+    <div class="hidden lg:flex items-center gap-8 text-[14px] font-medium text-gray-300">
+      <!-- Hoverable/Clickable Dropdown for Soluções -->
+      <div class="relative group" id="solutions-dropdown-container">
+        <button class="flex items-center gap-1 hover:text-indigo-400 transition focus:outline-none text-gray-300 py-2" id="solutions-dropdown-trigger">
+          <span data-i18n="nav_solutions">Soluções</span>
+          <svg class="w-3.5 h-3.5 opacity-60 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+        
+        <!-- Dropdown panel -->
+        <div class="absolute left-0 mt-2 w-80 rounded-2xl bg-[#0B0B0F]/95 backdrop-blur-xl border border-white/10 shadow-2xl p-3 hidden group-hover:block transition duration-200 z-50 text-white" id="solutions-dropdown-menu">
+          <div class="grid grid-cols-1 gap-0.5 text-xs">
+            <a href="atendimento-cliente.html" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/5 transition"><span class="text-indigo-400 font-bold">›</span> <span data-i18n="sol_atendimento_cliente">Atendimento automático ao cliente</span></a>
+            <a href="automacao-marcacoes.html" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/5 transition"><span class="text-indigo-400 font-bold">›</span> <span data-i18n="sol_automacao_marcacoes">Automação de marcações</span></a>
+            <a href="criacao-conteudo.html" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/5 transition"><span class="text-indigo-400 font-bold">›</span> <span data-i18n="sol_criacao_conteudo">Criação de conteúdo</span></a>
+            <a href="gestao-reviews.html" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/5 transition"><span class="text-indigo-400 font-bold">›</span> <span data-i18n="sol_gestao_reviews">Gestão de reviews</span></a>
+            <a href="sistemas-ai-internos.html" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/5 transition"><span class="text-indigo-400 font-bold">›</span> <span data-i18n="sol_sistemas_ai_internos">Sistemas de AI internos</span></a>
+            <a href="automacao-tarefas.html" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/5 transition"><span class="text-indigo-400 font-bold">›</span> <span data-i18n="sol_automacao_tarefas">Automatização de tarefas repetitivas</span></a>
+            <a href="propostas-orcamentos.html" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/5 transition"><span class="text-indigo-400 font-bold">›</span> <span data-i18n="sol_propostas_orcamentos">Geração de propostas e orçamentos</span></a>
+            <a href="ai-recrutamento.html" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/5 transition"><span class="text-indigo-400 font-bold">›</span> <span data-i18n="sol_ai_recrutamento">AI para recrutamento</span></a>
+            <a href="followup-leads.html" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/5 transition"><span class="text-indigo-400 font-bold">›</span> <span data-i18n="sol_followup_leads">Follow-up automático de leads</span></a>
+            <a href="transcricao-reunioes.html" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/5 transition"><span class="text-indigo-400 font-bold">›</span> <span data-i18n="sol_transcricao_reunioes">Transcrição e resumo de reuniões</span></a>
+            <a href="automacao-faturacao.html" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/5 transition"><span class="text-indigo-400 font-bold">›</span> <span data-i18n="sol_automacao_faturacao">Automação de faturação e documentos</span></a>
+            <a href="dashboards-relatorios.html" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/5 transition"><span class="text-indigo-400 font-bold">›</span> <span data-i18n="sol_dashboards_relatorios">Dashboards e relatórios automáticos</span></a>
+            <a href="sistemas-personalizados.html" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/5 transition"><span class="text-indigo-400 font-bold">›</span> <span data-i18n="sol_sistemas_personalizados">Sistemas personalizados simples</span></a>
+          </div>
+        </div>
+      </div>
+      
+      <a href="../index.html#mockups" class="hover:text-indigo-400 transition" data-i18n="nav_resources">Recursos</a>
+      <a href="../index.html#beneficios" class="hover:text-indigo-400 transition" data-i18n="nav_benefits">Benefícios</a>
+      <a href="../index.html#metricas" class="hover:text-indigo-400 transition" data-i18n="nav_metrics">Métricas</a>
+      <a href="../index.html#parceiros" class="hover:text-indigo-400 transition" data-i18n="nav_clients">Clientes</a>
+    </div>
+  </div>
+  
+  <div class="flex items-center gap-4">
+    <!-- Custom Language Selector Dropdown -->
+    <div class="relative inline-block text-left" id="lang-selector-container">
+      <button id="lang-btn" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white text-xs font-semibold focus:outline-none transition">
+        <span id="current-lang-flag">🇵🇹</span>
+        <span id="current-lang-code" class="uppercase">PT</span>
+        <svg class="w-3 h-3 opacity-60 transition-transform duration-200" id="lang-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+      </button>
+      <div id="lang-dropdown" class="absolute right-0 mt-2 w-32 rounded-xl bg-[#13131A] border border-white/10 shadow-2xl p-1 hidden z-50">
+        <button onclick="setLanguage('pt')" class="flex items-center gap-2 w-full px-3 py-1.5 rounded-lg hover:bg-white/5 text-left text-white text-xs transition">
+          <span>🇵🇹</span> <span>Português</span>
+        </button>
+        <button onclick="setLanguage('en')" class="flex items-center gap-2 w-full px-3 py-1.5 rounded-lg hover:bg-white/5 text-left text-white text-xs transition">
+          <span>🇬🇧</span> <span>English</span>
+        </button>
+        <button onclick="setLanguage('fr')" class="flex items-center gap-2 w-full px-3 py-1.5 rounded-lg hover:bg-white/5 text-left text-white text-xs transition">
+          <span>🇫🇷</span> <span>Français</span>
+        </button>
+        <button onclick="setLanguage('es')" class="flex items-center gap-2 w-full px-3 py-1.5 rounded-lg hover:bg-white/5 text-left text-white text-xs transition">
+          <span>🇪🇸</span> <span>Español</span>
+        </button>
+        <button onclick="setLanguage('de')" class="flex items-center gap-2 w-full px-3 py-1.5 rounded-lg hover:bg-white/5 text-left text-white text-xs transition">
+          <span>🇩🇪</span> <span>Deutsch</span>
+        </button>
+      </div>
+    </div>
+
+    <a href="#" class="hidden md:block text-[14px] font-semibold text-gray-300 hover:text-indigo-400 px-3 py-2 transition" data-i18n="nav_signin">Entrar</a>
+    <a href="#" class="text-[14px] bg-indigo-600 text-white font-semibold rounded-xl px-5 py-2.5 shadow-md shadow-indigo-100 hover:bg-indigo-700 hover:shadow-lg transition" data-i18n="nav_signup">Começar Grátis</a>
+  </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="hero-bg pt-20 pb-20 overflow-hidden border-b border-gray-900">
+  <div class="max-w-4xl mx-auto px-6 text-center">
+    <a href="../index.html" class="inline-flex items-center gap-1.5 text-xs text-indigo-400 font-semibold uppercase tracking-wider mb-6 hover:text-indigo-300 transition">
+      <span>←</span> <span data-i18n="back_home">Voltar para a Home</span>
+    </a>
+    <h1 class="text-white font-extrabold leading-tight tracking-tight mb-6 font-heading text-4xl md:text-5xl" id="solution-title">
+      Sistemas de AI internos
+    </h1>
+    <p class="text-gray-400 text-sm md:text-base max-w-xl mx-auto leading-relaxed font-light" data-i18n="solution_hero_sub">
+      Descubra como a nossa tecnologia de automação avançada por IA pode revolucionar seus processos empresariais.
+    </p>
+  </div>
+</section>
+
+<!-- MAIN CONTENT AREA -->
+<section class="bg-white py-20 px-6 md:px-12">
+  <div class="max-w-3xl mx-auto prose prose-indigo text-gray-600 leading-relaxed space-y-6">
+    <p class="text-base md:text-lg font-light text-gray-500">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+    </p>
+    <p>
+      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida.
+    </p>
+    <p>
+      Morbi ac felis. Nunc nisl. In hac habitasse platea dictumst. Curabitur at lacus ac velit ornare lobortis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Aliquam id dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos.
+    </p>
+    
+    <div class="pt-8 border-t border-gray-150 flex items-center justify-between">
+      <a href="../index.html" class="inline-flex items-center gap-1.5 text-sm font-bold text-indigo-600 hover:text-indigo-800 transition">
+        <span>←</span> <span data-i18n="back_link">Voltar</span>
+      </a>
+      <span class="text-xs text-gray-400 font-mono">AI Solutions Enterprise</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-white border-t border-gray-200 py-16 px-6 md:px-12">
+  <div class="max-w-6xl mx-auto">
+    <!-- Top row: Brand Logo + socials -->
+    <div class="flex items-center justify-between mb-12">
+      <div class="flex items-center gap-2.5 font-heading font-extrabold text-[17px] text-gray-900 tracking-tight">
+        <div class="w-6.5 h-6.5 bg-indigo-600 rounded-lg flex items-center justify-center text-white overflow-hidden shadow-md shadow-indigo-100">
+          <span class="font-heading text-[10px] font-black tracking-widest pl-0.5">AI</span>
+        </div>
+        <span>AI Solutions</span>
+      </div>
+      <div class="flex items-center gap-5 text-gray-400">
+        <a href="#" class="hover:text-indigo-600 transition text-sm font-semibold">𝕏</a>
+        <a href="#" class="hover:text-indigo-600 transition text-sm font-semibold">LinkedIn</a>
+        <a href="#" class="hover:text-indigo-600 transition text-sm font-semibold">YouTube</a>
+        <a href="#" class="hover:text-indigo-600 transition text-sm font-semibold">GitHub</a>
+      </div>
+    </div>
+
+    <!-- Categorized links grid -->
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
+      <div>
+        <p class="text-xs font-bold text-gray-800 uppercase tracking-widest mb-3.5" data-i18n="foot_solutions_cat">Nossas Soluções</p>
+        <ul class="space-y-2">
+          <li><a href="criacao-conteudo.html" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition" data-i18n="sol_criacao_conteudo">Criação de conteúdo</a></li>
+          <li><a href="atendimento-cliente.html" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition" data-i18n="sol_atendimento_cliente">Atendimento automático ao cliente</a></li>
+          <li><a href="automacao-faturacao.html" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition" data-i18n="sol_automacao_faturacao">Automação de faturação e documentos</a></li>
+          <li><a href="automacao-marcacoes.html" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition" data-i18n="sol_automacao_marcacoes">Automação de marcações</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-xs font-bold text-gray-800 uppercase tracking-widest mb-3.5" data-i18n="foot_dev_cat">Recursos DEV</p>
+        <ul class="space-y-2">
+          <li><a href="#" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition">Documentação da API</a></li>
+          <li><a href="#" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition">SDK Node/Python</a></li>
+          <li><a href="#" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition">Status dos Servidores</a></li>
+          <li><a href="#" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition">Modelos Suportados</a></li>
+          <li><a href="#" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition">Central de Segurança</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-xs font-bold text-gray-800 uppercase tracking-widest mb-3.5" data-i18n="foot_prod_cat">Produto & Planos</p>
+        <ul class="space-y-2">
+          <li><a href="#" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition">Preços & Assentos</a></li>
+          <li><a href="#" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition">Demonstração ao Vivo</a></li>
+          <li><a href="#" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition">Estudos de Caso</a></li>
+          <li><a href="#" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition">Atualizações Mensais</a></li>
+          <li><a href="#" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition">Afiliados</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-xs font-bold text-gray-800 uppercase tracking-widest mb-3.5" data-i18n="foot_corp_cat">Institucional</p>
+        <ul class="space-y-2">
+          <li><a href="#" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition">Sobre a AI Solutions</a></li>
+          <li><a href="#" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition">Trabalhe Conosco</a></li>
+          <li><a href="#" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition">Blog de Engenharia</a></li>
+          <li><a href="#" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition">Notícias de IA</a></li>
+          <li><a href="#" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition">Fale com Vendas</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-xs font-bold text-gray-800 uppercase tracking-widest mb-3.5" data-i18n="foot_int_cat">Integrações API</p>
+        <ul class="space-y-2">
+          <li><a href="#" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition">Slack App</a></li>
+          <li><a href="#" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition">WhatsApp Business</a></li>
+          <li><a href="#" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition">Stripe Connector</a></li>
+          <li><a href="#" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition">Hubspot Webhook</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom sub-row: copyright and terms -->
+    <div class="border-t border-gray-150 pt-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div class="flex items-center gap-1.5">
+        <span class="text-xs text-gray-400" data-i18n="foot_developed_by">Desenvolvido com robustez por</span>
+        <span class="text-xs font-bold text-gray-700">AI Solutions Team</span>
+      </div>
+      <div class="flex flex-wrap gap-4 text-xs">
+        <a href="#" class="text-gray-400 hover:text-gray-600 transition" data-i18n="foot_terms">Privacidade e Termos</a>
+        <a href="#" class="text-gray-400 hover:text-gray-600 transition" data-i18n="foot_security">Políticas de Segurança</a>
+        <a href="#" class="text-gray-400 hover:text-gray-600 transition" data-i18n="foot_cookies">Cookies</a>
+        <a href="#" class="text-gray-400 hover:text-gray-600 transition" data-i18n="foot_accessibility">Acessibilidade</a>
+        <span class="text-gray-400 font-medium" data-i18n="foot_copyright">© 2026 AI Solutions Labs, Inc.</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // TRANSLATIONS DATA OBJECT
+  const translations = {
+    pt: {
+      nav_solutions: "Soluções",
+      nav_resources: "Recursos",
+      nav_benefits: "Benefícios",
+      nav_metrics: "Métricas",
+      nav_clients: "Clientes",
+      nav_signin: "Entrar",
+      nav_signup: "Começar Grátis",
+      
+      sol_atendimento_cliente: "Atendimento automático ao cliente",
+      sol_automacao_marcacoes: "Automação de marcações",
+      sol_criacao_conteudo: "Criação de conteúdo",
+      sol_gestao_reviews: "Gestão de reviews",
+      sol_sistemas_ai_internos: "Sistemas de AI internos",
+      sol_automacao_tarefas: "Automatização de tarefas repetitivas",
+      sol_propostas_orcamentos: "Geração de propostas e orçamentos",
+      sol_ai_recrutamento: "AI para recrutamento",
+      sol_followup_leads: "Follow-up automático de leads",
+      sol_transcricao_reunioes: "Transcrição e resumo de reuniões",
+      sol_automacao_faturacao: "Automação de faturação e documentos",
+      sol_dashboards_relatorios: "Dashboards e relatórios automáticos",
+      sol_sistemas_personalizados: "Sistemas personalizados simples",
+      
+      back_home: "Voltar para a Home",
+      solution_hero_sub: "Descubra como a nossa tecnologia de automação avançada por IA pode revolucionar seus processos empresariais.",
+      back_link: "Voltar",
+
+      foot_solutions_cat: "Nossas Soluções",
+      foot_dev_cat: "Recursos DEV",
+      foot_prod_cat: "Produto & Planos",
+      foot_corp_cat: "Institucional",
+      foot_int_cat: "Integrações API",
+      foot_developed_by: "Desenvolvido com robustez por",
+      foot_terms: "Privacidade e Termos",
+      foot_security: "Políticas de Segurança",
+      foot_cookies: "Cookies",
+      foot_accessibility: "Acessibilidade",
+      foot_copyright: "© 2026 AI Solutions Labs, Inc."
+    },
+    en: {
+      nav_solutions: "Solutions",
+      nav_resources: "Resources",
+      nav_benefits: "Benefits",
+      nav_metrics: "Metrics",
+      nav_clients: "Clients",
+      nav_signin: "Sign In",
+      nav_signup: "Start Free",
+      
+      sol_atendimento_cliente: "Automated customer service",
+      sol_automacao_marcacoes: "Booking automation",
+      sol_criacao_conteudo: "Content creation",
+      sol_gestao_reviews: "Reviews management",
+      sol_sistemas_ai_internos: "Internal AI systems",
+      sol_automacao_tarefas: "Repetitive task automation",
+      sol_propostas_orcamentos: "Proposal & budget generation",
+      sol_ai_recrutamento: "AI for recruitment",
+      sol_followup_leads: "Automated lead follow-up",
+      sol_transcricao_reunioes: "Meeting transcription & summary",
+      sol_automacao_faturacao: "Billing & document automation",
+      sol_dashboards_relatorios: "Automated dashboards & reports",
+      sol_sistemas_personalizados: "Simple custom systems",
+      
+      back_home: "Back to Home",
+      solution_hero_sub: "Discover how our advanced AI automation technology can revolutionize your business processes.",
+      back_link: "Back",
+
+      foot_solutions_cat: "Solutions",
+      foot_dev_cat: "DEV Resources",
+      foot_prod_cat: "Product & Plans",
+      foot_corp_cat: "Company",
+      foot_int_cat: "API Connectors",
+      foot_developed_by: "Built with robustness by",
+      foot_terms: "Privacy & Terms",
+      foot_security: "Security Policy",
+      foot_cookies: "Cookies Setup",
+      foot_accessibility: "Accessibility",
+      foot_copyright: "© 2026 AI Solutions Labs, Inc."
+    },
+    fr: {
+      nav_solutions: "Solutions",
+      nav_resources: "Ressources",
+      nav_benefits: "Avantages",
+      nav_metrics: "Mesures",
+      nav_clients: "Clients",
+      nav_signin: "Connexion",
+      nav_signup: "Essai Gratuit",
+      
+      sol_atendimento_cliente: "Service client automatisé",
+      sol_automacao_marcacoes: "Automatisation des réservations",
+      sol_criacao_conteudo: "Création de contenu",
+      sol_gestao_reviews: "Gestion des avis",
+      sol_sistemas_ai_internos: "Systèmes d'IA internes",
+      sol_automacao_tarefas: "Automatisation des tâches répétitives",
+      sol_propostas_orcamentos: "Génération de propositions & budgets",
+      sol_ai_recrutamento: "L'IA pour le recrutement",
+      sol_followup_leads: "Suivi automatique des prospects",
+      sol_transcricao_reunioes: "Transcription & résumé de réunions",
+      sol_automacao_faturacao: "Automatisation de la facturation",
+      sol_dashboards_relatorios: "Tableaux de bord & rapports auto",
+      sol_sistemas_personalizados: "Systèmes personnalisés simples",
+      
+      back_home: "Retour à l'accueil",
+      solution_hero_sub: "Découvrez comment notre technologie d'automatisation avancée par l'IA peut révolutionner vos processus d'entreprise.",
+      back_link: "Retour",
+
+      foot_solutions_cat: "Solutions",
+      foot_dev_cat: "Espace DEV",
+      foot_prod_cat: "Tarifs & Plans",
+      foot_corp_cat: "Entreprise",
+      foot_int_cat: "Connecteurs API",
+      foot_developed_by: "Développé avec rigueur par",
+      foot_terms: "Données & Confidentialité",
+      foot_security: "Sécurité",
+      foot_cookies: "Gestion des Cookies",
+      foot_accessibility: "Accessibilité",
+      foot_copyright: "© 2026 AI Solutions Labs, Inc."
+    },
+    es: {
+      nav_solutions: "Soluciones",
+      nav_resources: "Recursos",
+      nav_benefits: "Beneficios",
+      nav_metrics: "Métricas",
+      nav_clients: "Clientes",
+      nav_signin: "Acceder",
+      nav_signup: "Empezar Gratis",
+      
+      sol_atendimento_cliente: "Atención al cliente automatizada",
+      sol_automacao_marcacoes: "Automatización de citas",
+      sol_criacao_conteudo: "Creación de contenido",
+      sol_gestao_reviews: "Gestión de reseñas",
+      sol_sistemas_ai_internos: "Sistemas de IA internos",
+      sol_automacao_tarefas: "Automatización de tareas repetitivas",
+      sol_propostas_orcamentos: "Generación de propuestas y presupuestos",
+      sol_ai_recrutamento: "IA para contratación",
+      sol_followup_leads: "Seguimiento automático de prospectos",
+      sol_transcricao_reunioes: "Transcripción y resumen de reuniones",
+      sol_automacao_faturacao: "Automatización de facturación",
+      sol_dashboards_relatorios: "Paneles y informes automáticos",
+      sol_sistemas_personalizados: "Sistemas personalizados simples",
+      
+      back_home: "Volver a la Home",
+      solution_hero_sub: "Descubra cómo nuestra tecnología de automatización avanzada por IA puede revolucionar sus procesos empresariales.",
+      back_link: "Volver",
+
+      foot_solutions_cat: "Soluciones",
+      foot_dev_cat: "Espacio DEV",
+      foot_prod_cat: "Precios y Planes",
+      foot_corp_cat: "Compañía",
+      foot_int_cat: "Conectores API",
+      foot_developed_by: "Desarrollado con rigor por",
+      foot_terms: "Privacidad y Condiciones",
+      foot_security: "Seguridad Corporativa",
+      foot_cookies: "Gestión de Cookies",
+      foot_accessibility: "Accesibilidad",
+      foot_copyright: "© 2026 AI Solutions Labs, Inc."
+    },
+    de: {
+      nav_solutions: "Lösungen",
+      nav_resources: "Ressourcen",
+      nav_benefits: "Vorteile",
+      nav_metrics: "Metriken",
+      nav_clients: "Kunden",
+      nav_signin: "Anmelden",
+      nav_signup: "Gratis starten",
+      
+      sol_atendimento_cliente: "Automatisierter Kundenservice",
+      sol_automacao_marcacoes: "Buchungsautomatisierung",
+      sol_criacao_conteudo: "Inhaltserstellung",
+      sol_gestao_reviews: "Bewertungsmangement",
+      sol_sistemas_ai_internos: "Interne KI-Systeme",
+      sol_automacao_tarefas: "Automatisierung von Routineaufgaben",
+      sol_propostas_orcamentos: "Erstellung von Angeboten & Budgets",
+      sol_ai_recrutamento: "KI für die Personalbeschaffung",
+      sol_followup_leads: "Automatisches Lead-Follow-up",
+      sol_transcricao_reunioes: "Meeting-Transkription & Zusammenfassung",
+      sol_automacao_faturacao: "Abrechnungs- & Dokumentenautomatisierung",
+      sol_dashboards_relatorios: "Automatische Dashboards & Berichte",
+      sol_sistemas_personalizados: "Einfache maßgeschneiderte Systeme",
+      
+      back_home: "Zurück zur Startseite",
+      solution_hero_sub: "Entdecken Sie, wie unsere fortschrittliche KI-Automatisierungstechnologie Ihre Geschäftsprozesse revolutionieren kann.",
+      back_link: "Zurück",
+
+      foot_solutions_cat: "Lösungen",
+      foot_dev_cat: "DEV-Bereich",
+      foot_prod_cat: "Preise & Tarife",
+      foot_corp_cat: "Unternehmen",
+      foot_int_cat: "API-Konnektoren",
+      foot_developed_by: "Mit Sorgfalt entwickelt von",
+      foot_terms: "Datenschutz & Bedingungen",
+      foot_security: "Sicherheitsrichtlinien",
+      foot_cookies: "Cookies-Einstellung",
+      foot_accessibility: "Barrierefreiheit",
+      foot_copyright: "© 2026 AI Solutions Labs, Inc."
+    }
+  };
+
+  // ACTIVE LANGUAGE CONTROLLER
+  function setLanguage(lang) {
+    // Save to localStorage
+    localStorage.setItem('selectedLanguage', lang);
+    
+    // Set active flag and code in switcher
+    const flags = { pt: '🇵🇹', en: '🇬🇧', fr: '🇫🇷', es: '🇪🇸', de: '🇩🇪' };
+    const codes = { pt: 'PT', en: 'EN', fr: 'FR', es: 'ES', de: 'DE' };
+    
+    document.getElementById('current-lang-flag').innerText = flags[lang];
+    document.getElementById('current-lang-code').innerText = codes[lang];
+    
+    // Set HTML lang attribute
+    document.documentElement.lang = lang === 'pt' ? 'pt-BR' : lang;
+    
+    // Apply translations
+    const elements = document.querySelectorAll('[data-i18n]');
+    elements.forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (translations[lang] && translations[lang][key]) {
+        el.innerHTML = translations[lang][key];
+      }
+    });
+  }
+
+  // Load language preference
+  document.addEventListener('DOMContentLoaded', () => {
+    const savedLang = localStorage.getItem('selectedLanguage') || 'pt';
+    setLanguage(savedLang);
+    
+    // Click toggle for Language switcher
+    const langBtn = document.getElementById('lang-btn');
+    const langDropdown = document.getElementById('lang-dropdown');
+    const langArrow = document.getElementById('lang-arrow');
+
+    if (langBtn && langDropdown) {
+      langBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isHidden = langDropdown.classList.toggle('hidden');
+        if (langArrow) {
+          langArrow.style.transform = isHidden ? 'rotate(0deg)' : 'rotate(180deg)';
+        }
+      });
+      
+      document.addEventListener('click', () => {
+        langDropdown.classList.add('hidden');
+        if (langArrow) {
+          langArrow.style.transform = 'rotate(0deg)';
+        }
+      });
+    }
+
+    // Solutions dropdown toggle fallback for mobile
+    const solutionsTrigger = document.getElementById('solutions-dropdown-trigger');
+    const solutionsMenu = document.getElementById('solutions-dropdown-menu');
+
+    if (solutionsTrigger && solutionsMenu) {
+      solutionsTrigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        solutionsMenu.classList.toggle('hidden');
+      });
+
+      document.addEventListener('click', () => {
+        solutionsMenu.classList.add('hidden');
+      });
+    }
+  });
+</script>
+
+</body>
+</html>

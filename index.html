@@ -1,0 +1,2078 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Solutions – Automatize sua empresa com agentes autónomos</title>
+  <meta name="description" content="AI Solutions cria websites automaticamente, gera agentes de atendimento de CS inteligentes, automatiza faturamento e integra toda a sua operação com IA avançada." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+            heading: ['Plus Jakarta Sans', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              dark: '#0B0B0F',
+              slate: '#13131A',
+              purple: '#6366f1',
+              violet: '#8b5cf6',
+              emerald: '#10b981',
+              teal: '#0d9488',
+              rose: '#f43f5e',
+              amber: '#f59e0b',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+    
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    
+    h1, h2, h3, h4, .font-heading {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .hero-bg {
+      background-color: #0B0B0F;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.18) 0px, transparent 50%),
+        radial-gradient(at 50% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(16, 185, 129, 0.1) 0px, transparent 50%);
+    }
+
+    .glass-nav {
+      background: rgba(11, 11, 15, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .browser-mock {
+      background: #13131A;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6), 0 0 40px rgba(99, 102, 241, 0.15);
+    }
+
+    .card-teal { background: linear-gradient(135deg, #0f766e 0%, #115e59 100%); }
+    .card-blue { background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%); }
+    .card-purple { background: linear-gradient(135deg, #6d28d9 0%, #5b21b6 100%); }
+    .card-rose { background: linear-gradient(135deg, #be123c 0%, #9f1239 100%); }
+    .card-amber { background: linear-gradient(135deg, #b45309 0%, #92400e 100%); }
+
+    .tag-pill {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+      font-size: 11px;
+      padding: 2px 10px;
+    }
+
+    .tag-pill-light {
+      background: rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 999px;
+      font-size: 11px;
+      padding: 2px 10px;
+    }
+
+    .glow-dot {
+      width: 8px;
+      height: 8px;
+      background-color: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #10b981, 0 0 20px #10b981;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.95); opacity: 0.5; box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+      70% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+      100% { transform: scale(0.95); opacity: 0.5; box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+
+    .typing-indicator span {
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      background-color: #9ca3af;
+      border-radius: 50%;
+      animation: bounce 1.4s infinite both;
+    }
+    .typing-indicator span:nth-child(2) { animation-delay: .2s; }
+    .typing-indicator span:nth-child(3) { animation-delay: .4s; }
+
+    @keyframes bounce {
+      0%, 80%, 100% { transform: scale(0); }
+      40% { transform: scale(1.0); }
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 antialiased selection:bg-purple-500 selection:text-white">
+
+<!-- NAVIGATION -->
+<nav class="glass-nav sticky top-0 z-50 flex items-center justify-between px-6 md:px-12 py-4">
+  <div class="flex items-center gap-10">
+    <!-- AI Solutions Logo -->
+    <a href="#" class="flex items-center gap-2.5 font-heading font-extrabold text-[19px] text-white tracking-tight transition hover:opacity-90" id="nav-logo">
+      <div class="relative w-7 h-7 bg-indigo-600 rounded-lg flex items-center justify-center text-white overflow-hidden shadow-md shadow-indigo-200">
+        <div class="absolute -inset-0.5 bg-gradient-to-tr from-indigo-500 to-violet-600 rounded-lg"></div>
+        <span class="relative font-heading text-xs font-black tracking-widest pl-0.5">AI</span>
+      </div>
+      <span class="flex items-center gap-1.5 text-white">
+        AI Solutions 
+        <span class="text-xs bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 font-semibold px-1.5 py-0.2 rounded-full uppercase tracking-wider scale-90">SaaS</span>
+      </span>
+    </a>
+    
+    <div class="hidden lg:flex items-center gap-8 text-[14px] font-medium text-gray-300">
+      <!-- Hoverable/Clickable Dropdown for Soluções -->
+      <div class="relative group" id="solutions-dropdown-container">
+        <button class="flex items-center gap-1 hover:text-indigo-400 transition focus:outline-none text-gray-300 py-2" id="solutions-dropdown-trigger">
+          <span data-i18n="nav_solutions">Soluções</span>
+          <svg class="w-3.5 h-3.5 opacity-60 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+        
+        <!-- Dropdown panel -->
+        <div class="absolute left-0 mt-2 w-80 rounded-2xl bg-[#0B0B0F]/95 backdrop-blur-xl border border-white/10 shadow-2xl p-3 hidden group-hover:block transition duration-200 z-50 text-white" id="solutions-dropdown-menu">
+          <div class="grid grid-cols-1 gap-0.5 text-xs">
+            <a href="solucoes/atendimento-cliente.html" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/5 transition"><span class="text-indigo-400 font-bold">›</span> <span data-i18n="sol_atendimento_cliente">Atendimento automático ao cliente</span></a>
+            <a href="solucoes/automacao-marcacoes.html" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/5 transition"><span class="text-indigo-400 font-bold">›</span> <span data-i18n="sol_automacao_marcacoes">Automação de marcações</span></a>
+            <a href="solucoes/criacao-conteudo.html" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/5 transition"><span class="text-indigo-400 font-bold">›</span> <span data-i18n="sol_criacao_conteudo">Criação de conteúdo</span></a>
+            <a href="solucoes/gestao-reviews.html" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/5 transition"><span class="text-indigo-400 font-bold">›</span> <span data-i18n="sol_gestao_reviews">Gestão de reviews</span></a>
+            <a href="solucoes/sistemas-ai-internos.html" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/5 transition"><span class="text-indigo-400 font-bold">›</span> <span data-i18n="sol_sistemas_ai_internos">Sistemas de AI internos</span></a>
+            <a href="solucoes/automacao-tarefas.html" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/5 transition"><span class="text-indigo-400 font-bold">›</span> <span data-i18n="sol_automacao_tarefas">Automatização de tarefas repetitivas</span></a>
+            <a href="solucoes/propostas-orcamentos.html" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/5 transition"><span class="text-indigo-400 font-bold">›</span> <span data-i18n="sol_propostas_orcamentos">Geração de propostas e orçamentos</span></a>
+            <a href="solucoes/ai-recrutamento.html" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/5 transition"><span class="text-indigo-400 font-bold">›</span> <span data-i18n="sol_ai_recrutamento">AI para recrutamento</span></a>
+            <a href="solucoes/followup-leads.html" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/5 transition"><span class="text-indigo-400 font-bold">›</span> <span data-i18n="sol_followup_leads">Follow-up automático de leads</span></a>
+            <a href="solucoes/transcricao-reunioes.html" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/5 transition"><span class="text-indigo-400 font-bold">›</span> <span data-i18n="sol_transcricao_reunioes">Transcrição e resumo de reuniões</span></a>
+            <a href="solucoes/automacao-faturacao.html" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/5 transition"><span class="text-indigo-400 font-bold">›</span> <span data-i18n="sol_automacao_faturacao">Automação de faturação e documentos</span></a>
+            <a href="solucoes/dashboards-relatorios.html" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/5 transition"><span class="text-indigo-400 font-bold">›</span> <span data-i18n="sol_dashboards_relatorios">Dashboards e relatórios automáticos</span></a>
+            <a href="solucoes/sistemas-personalizados.html" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/5 transition"><span class="text-indigo-400 font-bold">›</span> <span data-i18n="sol_sistemas_personalizados">Sistemas personalizados simples</span></a>
+          </div>
+        </div>
+      </div>
+      
+      <a href="#mockups" class="hover:text-indigo-400 transition" data-i18n="nav_resources">Recursos</a>
+      <a href="#beneficios" class="hover:text-indigo-400 transition" data-i18n="nav_benefits">Benefícios</a>
+      <a href="#metricas" class="hover:text-indigo-400 transition" data-i18n="nav_metrics">Métricas</a>
+      <a href="#parceiros" class="hover:text-indigo-400 transition" data-i18n="nav_clients">Clientes</a>
+    </div>
+  </div>
+  
+  <div class="flex items-center gap-4">
+    <!-- Custom Language Selector Dropdown -->
+    <div class="relative inline-block text-left" id="lang-selector-container">
+      <button id="lang-btn" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white text-xs font-semibold focus:outline-none transition">
+        <span id="current-lang-flag">🇵🇹</span>
+        <span id="current-lang-code" class="uppercase">PT</span>
+        <svg class="w-3 h-3 opacity-60 transition-transform duration-200" id="lang-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+      </button>
+      <div id="lang-dropdown" class="absolute right-0 mt-2 w-32 rounded-xl bg-[#13131A] border border-white/10 shadow-2xl p-1 hidden z-50">
+        <button onclick="setLanguage('pt')" class="flex items-center gap-2 w-full px-3 py-1.5 rounded-lg hover:bg-white/5 text-left text-white text-xs transition">
+          <span>🇵🇹</span> <span>Português</span>
+        </button>
+        <button onclick="setLanguage('en')" class="flex items-center gap-2 w-full px-3 py-1.5 rounded-lg hover:bg-white/5 text-left text-white text-xs transition">
+          <span>🇬🇧</span> <span>English</span>
+        </button>
+        <button onclick="setLanguage('fr')" class="flex items-center gap-2 w-full px-3 py-1.5 rounded-lg hover:bg-white/5 text-left text-white text-xs transition">
+          <span>🇫🇷</span> <span>Français</span>
+        </button>
+        <button onclick="setLanguage('es')" class="flex items-center gap-2 w-full px-3 py-1.5 rounded-lg hover:bg-white/5 text-left text-white text-xs transition">
+          <span>🇪🇸</span> <span>Español</span>
+        </button>
+        <button onclick="setLanguage('de')" class="flex items-center gap-2 w-full px-3 py-1.5 rounded-lg hover:bg-white/5 text-left text-white text-xs transition">
+          <span>🇩🇪</span> <span>Deutsch</span>
+        </button>
+      </div>
+    </div>
+
+    <a href="#" class="hidden md:block text-[14px] font-semibold text-gray-300 hover:text-indigo-400 px-3 py-2 transition" data-i18n="nav_signin">Entrar</a>
+    <a href="#" class="text-[14px] bg-indigo-600 text-white font-semibold rounded-xl px-5 py-2.5 shadow-md shadow-indigo-100 hover:bg-indigo-700 hover:shadow-lg transition" data-i18n="nav_signup">Começar Grátis</a>
+  </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="hero-bg pt-20 pb-24 overflow-hidden border-b border-gray-900">
+  <div class="max-w-6xl mx-auto px-6 md:px-12">
+    <!-- Trust badges row -->
+    <div class="flex items-center gap-4 mb-12 flex-wrap" id="hero-trust-row">
+      <span class="text-gray-400 text-xs font-medium uppercase tracking-wider" data-i18n="hero_used_by">Utilizado por equipes em</span>
+      <div class="flex items-center gap-6 opacity-80 flex-wrap">
+        <span class="text-white text-xs font-bold font-heading tracking-widest bg-white/5 border border-white/10 px-2.5 py-1 rounded">OPENAI</span>
+        <span class="text-white text-xs font-semibold tracking-wider opacity-60">midjourney</span>
+        <span class="text-white text-xs font-extrabold tracking-tight opacity-75">▲ Vercel</span>
+        <span class="text-white text-xs font-bold tracking-tight opacity-60 font-mono">SUPABASE</span>
+        <span class="text-white text-xs font-medium tracking-wide opacity-75">Linear</span>
+      </div>
+    </div>
+
+    <!-- Hero heading -->
+    <div class="max-w-4xl mb-14">
+      <h1 class="text-white font-extrabold leading-[1.08] tracking-tight mb-6 font-heading" style="font-size: clamp(38px, 6.5vw, 68px); letter-spacing: -2px;" data-i18n="hero_title">
+        Automatize sua operação.<br/>
+        <span class="bg-gradient-to-r from-indigo-400 via-violet-400 to-emerald-400 bg-clip-text text-transparent">Crie com inteligência.</span>
+      </h1>
+      <p class="text-gray-400 text-base md:text-xl max-w-2xl mb-10 leading-relaxed font-light" data-i18n="hero_subtitle">
+        A AI Solutions implanta agentes autónomos sob demanda na sua empresa para gerar sites completos, faturar clientes de forma automatizada e responder chats de suporte ao cliente 24/7.
+      </p>
+      
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+        <a href="#" class="bg-white text-gray-900 font-bold text-[15px] rounded-xl px-7 py-3.5 text-center shadow-lg shadow-white/5 hover:bg-gray-100 hover:scale-[1.02] active:scale-[0.98] transition" data-i18n="hero_cta1">Criar Meu Primeiro Agente</a>
+        <a href="#solucoes" class="text-white text-[15px] font-medium hover:text-indigo-300 text-center flex items-center justify-center gap-2 group transition">
+          <span data-i18n="hero_cta2">Ver demonstração interativa</span> <span class="group-hover:translate-x-1 transition-transform">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Dashboard Browser Mockup -->
+    <div class="relative mt-8">
+      <!-- Floating decorative badges -->
+      <div class="absolute -left-6 top-16 z-10 hidden lg:flex items-center gap-3 bg-gray-900/90 border border-white/10 rounded-2xl p-4 shadow-xl backdrop-blur-md">
+        <div class="w-10 h-10 bg-indigo-500/20 border border-indigo-500/30 rounded-xl flex items-center justify-center text-xl">🌐</div>
+        <div>
+          <p class="text-[10px] text-gray-500 font-bold uppercase tracking-wider" data-i18n="mock_fl1_title">Site Criado</p>
+          <p class="text-xs font-semibold text-white">www.lumibakery.pt</p>
+        </div>
+        <span class="text-xs text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded" data-i18n="mock_fl1_badge">ONLINE</span>
+      </div>
+      
+      <div class="absolute -right-6 top-32 z-10 hidden lg:flex items-center gap-3 bg-gray-900/90 border border-white/10 rounded-2xl p-4 shadow-xl backdrop-blur-md">
+        <div class="w-10 h-10 bg-emerald-500/20 border border-emerald-500/30 rounded-xl flex items-center justify-center text-xl">💵</div>
+        <div>
+          <p class="text-[10px] text-gray-500 font-bold uppercase tracking-wider" data-i18n="mock_fl2_title">Faturamento</p>
+          <p class="text-xs font-semibold text-white" data-i18n="mock_fl2_desc">Fatura #INV-2049 enviada</p>
+        </div>
+        <span class="text-xs text-indigo-400 font-bold bg-indigo-500/10 px-2 py-0.5 rounded">+R$4.250,00</span>
+      </div>
+
+      <!-- Main Browser Window -->
+      <div class="browser-mock mx-auto relative" style="max-width: 960px;" id="hero-browser-mockup">
+        <!-- Browser header (tabs + url bar) -->
+        <div class="bg-[#171721] rounded-t-2xl px-5 py-3.5 flex items-center gap-4 border-b border-white/5">
+          <div class="flex gap-2">
+            <div class="w-3 h-3 bg-red-500/70 rounded-full border border-red-500/20"></div>
+            <div class="w-3 h-3 bg-yellow-500/70 rounded-full border border-yellow-500/20"></div>
+            <div class="w-3 h-3 bg-green-500/70 rounded-full border border-green-500/20"></div>
+          </div>
+          <div class="flex-1 bg-[#0B0B0F] border border-white/5 rounded-lg mx-6 px-4 py-1.5 text-xs text-gray-400 text-center font-mono flex items-center justify-center gap-2 max-w-lg mx-auto">
+            <span class="text-emerald-400">🔒</span> dashboard.aisolutions.tech
+          </div>
+          <div class="flex items-center gap-1.5">
+            <div class="glow-dot"></div>
+            <span class="text-[10px] text-emerald-400 font-bold font-mono tracking-wider" data-i18n="mock_agents_status">AI AGENTS: ATIVOS</span>
+          </div>
+        </div>
+        
+        <!-- Browser Workspace contents -->
+        <div class="p-6 bg-[#0E0E15] rounded-b-2xl" style="min-height: 380px;">
+          <div class="flex flex-col md:flex-row gap-6 h-full">
+            <!-- Sidebar list inside mockup -->
+            <div class="w-full md:w-48 border-r border-white/5 pr-4 flex flex-col gap-4">
+              <div class="flex items-center gap-2 pb-3 border-b border-white/5">
+                <span class="text-lg">🤖</span>
+                <div>
+                  <h4 class="text-xs font-bold text-white tracking-wide" data-i18n="mock_central_panel">Painel Central</h4>
+                  <p class="text-[9px] text-gray-500" data-i18n="mock_agent_hub">AI Solutions Agent Hub</p>
+                </div>
+              </div>
+              
+              <div class="space-y-1.5">
+                <div class="text-[11px] font-semibold text-indigo-400 py-1.5 px-2.5 rounded bg-indigo-500/10 border border-indigo-500/15 flex items-center justify-between">
+                  <span data-i18n="mock_web_creator">🌐 Criador de Sites</span>
+                  <span class="text-[9px] font-mono bg-emerald-400/20 text-emerald-400 px-1 rounded">ON</span>
+                </div>
+                <div class="text-[11px] font-medium text-gray-400 hover:text-white py-1.5 px-2.5 rounded flex items-center justify-between transition cursor-pointer">
+                  <span data-i18n="mock_cs_support">💬 Agentes de CS Support</span>
+                  <span class="text-[9px] font-mono bg-indigo-400/10 text-indigo-400 px-1 rounded">24 ativ</span>
+                </div>
+                <div class="text-[11px] font-medium text-gray-400 hover:text-white py-1.5 px-2.5 rounded flex items-center justify-between transition cursor-pointer">
+                  <span data-i18n="mock_auto_billing">💵 Faturamento Auto</span>
+                  <span class="text-[9px] font-mono bg-indigo-400/10 text-indigo-400 px-1 rounded">Auto</span>
+                </div>
+                <div class="text-[11px] font-medium text-gray-400 hover:text-white py-1.5 px-2.5 rounded flex items-center justify-between transition cursor-pointer">
+                  <span data-i18n="mock_data_analytics">📊 Análise de Dados</span>
+                  <span class="text-[9px] font-mono text-gray-500">Standby</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Main logs & visual status inside mockup -->
+            <div class="flex-1 flex flex-col gap-4">
+              <div class="flex items-center justify-between border-b border-white/5 pb-2.5">
+                <h3 class="text-xs font-bold text-white font-heading" data-i18n="mock_realtime_log">Processando Atividades em Tempo Real</h3>
+                <span class="text-[10px] text-indigo-400 font-bold bg-indigo-500/10 px-2 py-0.5 rounded border border-indigo-500/10" data-i18n="mock_active_agents">3 Agentes Rodando</span>
+              </div>
+              
+              <!-- Logs stack -->
+              <div class="space-y-3 flex-1 font-mono text-[11px]">
+                <!-- Log entry 1: Web Builder -->
+                <div class="p-3 bg-white/5 rounded-xl border border-white/5 flex flex-col gap-1.5">
+                  <div class="flex items-center justify-between">
+                    <span class="text-indigo-400 font-bold" data-i18n="mock_log1_title">🌐 AGENTE CRIADOR DE WEBSITES</span>
+                    <span class="text-emerald-400 text-[10px] font-bold" data-i18n="mock_log1_action">Ação: Gerando HTML/CSS</span>
+                  </div>
+                  <p class="text-gray-300" data-i18n="mock_log1_desc">Construindo landing page para <strong class="text-white">Lumi Bakery Gourmet</strong>...</p>
+                  
+                  <!-- Simulated progress bar -->
+                  <div class="flex items-center gap-3 mt-1.5">
+                    <div class="flex-1 bg-white/10 rounded-full h-2 overflow-hidden">
+                      <div class="bg-gradient-to-r from-indigo-500 to-emerald-400 h-full rounded-full" style="width: 84%;"></div>
+                    </div>
+                    <span class="text-[10px] text-gray-400 font-bold">84%</span>
+                  </div>
+                  <div class="text-[10px] text-gray-500 mt-0.5 flex flex-wrap gap-2">
+                    <span data-i18n="mock_log1_sub1">✓ Design móvel otimizado</span>
+                    <span data-i18n="mock_log1_sub2">✓ Paleta gerada baseada em HSL</span>
+                    <span class="text-indigo-300 animate-pulse" data-i18n="mock_log1_sub3">⚡ Criando imagens de assets...</span>
+                  </div>
+                </div>
+
+                <!-- Log entry 2: Auto invoicing -->
+                <div class="p-3 bg-white/5 rounded-xl border border-white/5 flex flex-col gap-1">
+                  <div class="flex items-center justify-between">
+                    <span class="text-emerald-400 font-bold" data-i18n="mock_log2_title">💵 FATURAMENTO AUTOMÁTICO</span>
+                    <span class="text-gray-400 text-[10px]" data-i18n="mock_time_12s">há 12 seg</span>
+                  </div>
+                  <p class="text-gray-300" data-i18n="mock_log2_desc">Cliente <strong class="text-white">Carlos Mendes da Silva</strong> efetuou pagamento via PIX.</p>
+                  <p class="text-[10px] text-gray-500" data-i18n="mock_log2_details">Fatura automatizada #INV-1093 criada -> Enviado PDF de confirmação via e-mail e integração webhook no Slack executada (R$ 840,00).</p>
+                </div>
+
+                <!-- Log entry 3: Support CS Agent -->
+                <div class="p-3 bg-white/5 rounded-xl border border-white/5 flex flex-col gap-1">
+                  <div class="flex items-center justify-between">
+                    <span class="text-rose-400 font-bold" data-i18n="mock_log3_title">💬 AGENTE CS SUPPORT</span>
+                    <span class="text-gray-400 text-[10px]" data-i18n="mock_time_2m">há 2 min</span>
+                  </div>
+                  <p class="text-gray-300" data-i18n="mock_log3_desc">Atendimento Ticket <strong class="text-white">#5092 (Suporte técnico)</strong> fechado em 4.8s.</p>
+                  <p class="text-[10px] text-gray-500 font-italic" data-i18n="mock_log3_details">"Obrigado! O agente resolveu meu problema de login imediatamente." - Avaliação: ★★★★★</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Integration bottom bar -->
+    <div class="flex items-center justify-center gap-6 py-6 border-t border-white/5 mt-10 flex-wrap">
+      <span class="text-gray-500 text-xs uppercase tracking-wider font-semibold" data-i18n="hero_integration">Integrações prontas com</span>
+      <div class="flex items-center gap-6 opacity-60 flex-wrap">
+        <span class="text-white text-xs font-medium">Slack</span>
+        <span class="text-white text-xs font-medium">WhatsApp Cloud</span>
+        <span class="text-white text-xs font-medium">Stripe</span>
+        <span class="text-white text-xs font-medium">Google Drive</span>
+        <span class="text-white text-xs font-medium">Discord</span>
+        <span class="text-white text-xs font-medium">Asana</span>
+        <span class="text-white text-xs font-medium">Hubspot</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: Mantenha sua empresa avançando -->
+<section id="beneficios" class="bg-white py-28 px-6 md:px-12 border-b border-gray-100">
+  <div class="max-w-6xl mx-auto">
+    <div class="max-w-3xl mb-16">
+      <p class="text-xs font-bold text-indigo-600 uppercase tracking-widest mb-3" data-i18n="ben_sub">Automatização Escalonável</p>
+      <h2 class="font-bold text-gray-900 tracking-tight leading-tight mb-6 font-heading" style="font-size: clamp(30px, 5vw, 54px); letter-spacing: -1.5px;" data-i18n="ben_heading">
+        Seu negócio rodando dia e noite.<br/>
+        Sem interrupções ou erros.
+      </h2>
+      <p class="text-gray-500 text-base md:text-lg leading-relaxed" data-i18n="ben_desc">
+        Substitua workflows manuais complexos por agentes autónomos configurados em minutos. Deixe o trabalho repetitivo com quem faz rápido e com máxima precisão.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+      <!-- Left side: Detailed solutions bullet lists -->
+      <div class="space-y-6">
+        <div class="flex items-start gap-4 p-4 rounded-xl hover:bg-gray-50 transition">
+          <div class="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-xl flex-shrink-0">
+            💻
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-gray-900 mb-1" data-i18n="ben_item1_title">Criação Instantânea de Websites</h3>
+            <p class="text-sm text-gray-500 leading-relaxed" data-i18n="ben_item1_desc">Desenvolva landing pages, sites institucionais e portfolios adaptados com SEO nativo e design responsivo apenas enviando descrições textuais.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4 p-4 rounded-xl hover:bg-gray-50 transition">
+          <div class="w-10 h-10 rounded-xl bg-violet-50 border border-violet-100 flex items-center justify-center text-xl flex-shrink-0">
+            🤖
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-gray-900 mb-1" data-i18n="ben_item2_title">Configuração de Agentes Autônomos</h3>
+            <p class="text-sm text-gray-500 leading-relaxed" data-i18n="ben_item2_desc">Crie assistentes virtuais de marca personalizados, capazes de interagir com seus clientes pelo WhatsApp, Slack ou chat do site, buscando dados da sua base interna.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4 p-4 rounded-xl hover:bg-gray-50 transition">
+          <div class="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-xl flex-shrink-0">
+            💵
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-gray-900 mb-1" data-i18n="ben_item3_title">Faturamento e Cobrança Automática</h3>
+            <p class="text-sm text-gray-500 leading-relaxed" data-i18n="ben_item3_desc">Monitore transações, emita faturas automáticas via PIX/Cartão e envie avisos de cobrança periódicos sem a necessidade de intervenção do time financeiro.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4 p-4 rounded-xl hover:bg-gray-50 transition">
+          <div class="w-10 h-10 rounded-xl bg-rose-50 border border-rose-100 flex items-center justify-center text-xl flex-shrink-0">
+            💬
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-gray-900 mb-1" data-i18n="ben_item4_title">Suporte CS Autônomo e Multilíngue</h3>
+            <p class="text-sm text-gray-500 leading-relaxed" data-i18n="ben_item4_desc">Atendimento ao cliente em mais de 45 idiomas com resolução imediata de dúvidas frequentes, rastreamento de pedidos e abertura de chamados técnicos complexos.</p>
+          </div>
+        </div>
+
+        <!-- Micro pills row -->
+        <div class="flex items-center gap-3 pt-6 flex-wrap">
+          <div class="flex items-center gap-2 bg-gray-50 border border-gray-100 rounded-full px-4 py-2">
+            <span class="text-base">💬</span>
+            <span class="text-xs font-medium text-gray-600">WhatsApp Cloud</span>
+          </div>
+          <div class="flex items-center gap-2 bg-gray-50 border border-gray-100 rounded-full px-4 py-2">
+            <span class="text-base">📊</span>
+            <span class="text-xs font-medium text-gray-600" data-i18n="ben_pill_cost">Redução de Custos</span>
+          </div>
+          <div class="flex items-center gap-2 bg-gray-50 border border-gray-100 rounded-full px-4 py-2">
+            <span class="text-base">🔄</span>
+            <span class="text-xs font-medium text-gray-600" data-i18n="ben_pill_auto">Automação Completa</span>
+          </div>
+          <div class="flex items-center gap-2 bg-indigo-600 rounded-full px-4 py-2 shadow-md shadow-indigo-100">
+            <span class="text-base text-white">🚀</span>
+            <span class="text-xs font-semibold text-white" data-i18n="ben_pill_start">Iniciar Teste Já</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right side: CS Support Chat simulation Card -->
+      <div class="bg-gray-50 rounded-3xl p-6 md:p-8 border border-gray-200 shadow-sm relative overflow-hidden" id="cs-support-preview">
+        <div class="absolute -right-4 -top-4 w-24 h-24 bg-rose-400/10 rounded-full filter blur-xl"></div>
+        
+        <div class="flex items-center justify-between mb-6 pb-4 border-b border-gray-200">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-bold text-sm shadow-md">CS</div>
+            <div>
+              <h4 class="text-sm font-bold text-gray-900 font-heading" data-i18n="chat_header">Suporte Inteligente (Agente AI-CS)</h4>
+              <p class="text-[11px] text-emerald-500 font-semibold flex items-center gap-1">
+                <span class="w-2 h-2 bg-emerald-500 rounded-full inline-block animate-ping"></span> 
+                <span data-i18n="chat_status">Atendimento ativo e resolvendo</span>
+              </p>
+            </div>
+          </div>
+          <span class="tag-pill-light">Ticket #4052</span>
+        </div>
+
+        <div class="space-y-4">
+          <!-- Chat flow -->
+          <div class="flex flex-col gap-1.5 max-w-[85%]">
+            <span class="text-[10px] text-gray-400 font-medium" data-i18n="chat_client_carlos">Cliente (Carlos)</span>
+            <div class="bg-white rounded-2xl rounded-tl-none p-3.5 border border-gray-200 shadow-sm text-sm text-gray-800" data-i18n="chat_client_q1">
+              Olá! Como faço para alterar o plano da minha equipe para a modalidade anual e adicionar mais dois assentos?
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-1.5 max-w-[85%] ml-auto items-end">
+            <span class="text-[10px] text-indigo-600 font-bold flex items-center gap-1">
+              <span data-i18n="chat_agent_name">✨ Agente AI Solutions</span>
+              <span class="bg-indigo-50 text-indigo-600 px-1 rounded text-[8px] font-bold">1.5s resp</span>
+            </span>
+            <div class="bg-indigo-600 text-white rounded-2xl rounded-tr-none p-3.5 shadow-md text-sm leading-relaxed" data-i18n="chat_agent_r1">
+              Olá, Carlos! Identifiquei sua conta e posso realizar esse upgrade agora mesmo. O plano Anual Pro da sua empresa ficará com desconto de 20%, e os assentos extras serão inclusos no proporcional. Deseja prosseguir?
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-1.5 max-w-[85%]">
+            <span class="text-[10px] text-gray-400 font-medium" data-i18n="chat_client_carlos">Cliente (Carlos)</span>
+            <div class="bg-white rounded-2xl rounded-tl-none p-3.5 border border-gray-200 shadow-sm text-sm text-gray-800" data-i18n="chat_client_q2">
+              Sim, por favor. Pode autorizar o upgrade na cobrança automática cadastrada.
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-1.5 max-w-[85%] ml-auto items-end">
+            <span class="text-[10px] text-indigo-600 font-bold flex items-center gap-1">
+              <span data-i18n="chat_agent_name">✨ Agente AI Solutions</span>
+              <span class="bg-indigo-50 text-indigo-600 px-1 rounded text-[8px] font-bold" data-i18n="chat_success">Sucesso</span>
+            </span>
+            <div class="bg-[#13131A] text-white rounded-2xl rounded-tr-none p-3.5 border border-white/5 shadow-lg text-sm leading-relaxed flex flex-col gap-2">
+              <span class="text-emerald-400 font-bold flex items-center gap-1" data-i18n="chat_upg_done">✓ Upgrade Concluído!</span>
+              <p class="text-xs text-gray-300" data-i18n="chat_upg_desc">Alterado para Plano Anual Pro. Cobrança de R$ 2.400,00 processada automaticamente na sua conta bancária. PDF enviado.</p>
+              <div class="border-t border-white/5 pt-2 mt-1 flex items-center justify-between text-[11px] text-gray-400">
+                <span>Fatura ID: #INV-9241</span>
+                <span class="text-emerald-400 font-semibold bg-emerald-400/10 px-1.5 py-0.2 rounded font-mono" data-i18n="chat_paid">PAGO PIX</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 flex items-center gap-2 pt-4 border-t border-gray-200">
+          <div class="flex-1 bg-white border border-gray-200 rounded-full px-4 py-2.5 text-xs text-gray-400 shadow-inner" data-i18n="chat_finalizing">
+            Agente AI finalizando processo...
+          </div>
+          <button class="w-10 h-10 bg-gray-900 text-white rounded-full flex items-center justify-center shadow hover:bg-black transition">✓</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: Nossas Soluções Sob Demanda -->
+<section id="solucoes" class="bg-white py-28 px-6 md:px-12 border-b border-gray-100">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+      <div>
+        <p class="section-label uppercase tracking-widest text-xs font-bold text-gray-400 mb-3" data-i18n="show_sub">Assistentes Autônomos</p>
+        <h2 class="font-bold text-gray-900 tracking-tight leading-tight font-heading" style="font-size: clamp(30px, 5vw, 54px); letter-spacing: -1.5px;" data-i18n="show_title">
+          Consulte e implante seus<br/>assistentes sob demanda.
+        </h2>
+      </div>
+      <a href="#" class="inline-flex items-center justify-center gap-2 text-sm font-bold text-indigo-600 hover:text-indigo-800 transition">
+        <span data-i18n="show_cta_catalog">Ver catálogo completo de IAs</span> <span class="bg-indigo-50 border border-indigo-100 w-8 h-8 rounded-full flex items-center justify-center text-indigo-600">→</span>
+      </a>
+    </div>
+
+    <!-- Multi-colored responsive solutions grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <!-- Card 1: Website Creation (Teal) -->
+      <div class="card-teal rounded-3xl p-8 md:p-10 relative overflow-hidden min-h-[380px] flex flex-col justify-between group shadow-md shadow-teal-900/5 hover:shadow-xl hover:shadow-teal-900/10 hover:-translate-y-1 transition duration-300">
+        <!-- Background light effect -->
+        <div class="absolute -right-16 -top-16 w-48 h-48 bg-teal-400/20 rounded-full filter blur-xl group-hover:scale-110 transition duration-300"></div>
+        
+        <div>
+          <div class="flex justify-between items-start mb-6">
+            <div>
+              <span class="tag-pill bg-white/10 text-teal-200">WEB CREATOR</span>
+              <p class="text-[11px] text-teal-200 mt-2" data-i18n="show_teal_sub">Geração automática de páginas web.</p>
+            </div>
+            <span class="w-10 h-10 bg-black/35 rounded-full flex items-center justify-center text-white text-lg font-bold">🌐</span>
+          </div>
+          
+          <h3 class="text-2xl md:text-3xl font-extrabold text-white mb-4 leading-tight font-heading" data-i18n="show_teal_title">
+            Criação ágil de<br/>Websites completas.
+          </h3>
+          <p class="text-sm text-teal-100 max-w-sm font-light leading-relaxed" data-i18n="show_teal_desc">
+            Escreva o conceito, adicione as diretrizes de cores e veja o agente desenhar o layout, otimizar o SEO e publicar seu novo site na nuvem em segundos.
+          </p>
+        </div>
+
+        <div class="mt-8 flex items-center justify-between border-t border-white/10 pt-6">
+          <span class="text-xs font-semibold text-teal-200" data-i18n="show_teal_foot">Disponível em HTML/Tailwind CDN</span>
+          <button class="bg-white text-teal-900 px-4 py-2 rounded-xl text-xs font-bold shadow hover:bg-teal-50 transition" data-i18n="show_teal_btn">Experimentar Criador</button>
+        </div>
+      </div>
+
+      <!-- Card 2: Agent Creation (Indigo/Violet) -->
+      <div class="card-purple rounded-3xl p-8 md:p-10 relative overflow-hidden min-h-[380px] flex flex-col justify-between group shadow-md shadow-indigo-900/5 hover:shadow-xl hover:shadow-indigo-900/10 hover:-translate-y-1 transition duration-300">
+        <!-- Background light effect -->
+        <div class="absolute -right-16 -top-16 w-48 h-48 bg-violet-400/20 rounded-full filter blur-xl group-hover:scale-110 transition duration-300"></div>
+        
+        <div>
+          <div class="flex justify-between items-start mb-6">
+            <div>
+              <span class="tag-pill bg-white/10 text-indigo-200">AGENT BUILDER</span>
+              <p class="text-[11px] text-indigo-200 mt-2" data-i18n="show_purple_sub">Desenvolvimento rápido de personas de IA.</p>
+            </div>
+            <span class="w-10 h-10 bg-black/35 rounded-full flex items-center justify-center text-white text-lg font-bold">🤖</span>
+          </div>
+          
+          <h3 class="text-2xl md:text-3xl font-extrabold text-white mb-4 leading-tight font-heading" data-i18n="show_purple_title">
+            Agentes configurados<br/>com o tom da sua marca.
+          </h3>
+          <p class="text-sm text-indigo-100 max-w-sm font-light leading-relaxed" data-i18n="show_purple_desc">
+            Configure assistentes virtuais de suporte técnico, copywriters e consultores comerciais enviando arquivos PDF ou páginas de documentação.
+          </p>
+        </div>
+
+        <div class="mt-8 flex items-center justify-between border-t border-white/10 pt-6">
+          <span class="text-xs font-semibold text-indigo-200" data-i18n="show_purple_foot">Ativação via WhatsApp & Chat</span>
+          <button class="bg-white text-indigo-900 px-4 py-2 rounded-xl text-xs font-bold shadow hover:bg-indigo-50 transition" data-i18n="show_purple_btn">Configurar Agente</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: Consolide todo o seu faturamento e CS -->
+<section id="mockups" class="bg-white py-28 px-6 md:px-12 border-b border-gray-100">
+  <div class="max-w-6xl mx-auto">
+    <div class="max-w-2xl mb-16">
+      <p class="text-xs font-bold text-indigo-600 uppercase tracking-widest mb-3" data-i18n="int_sub">Fluxos Integrados</p>
+      <h2 class="font-bold text-gray-900 tracking-tight leading-tight mb-6 font-heading" style="font-size: clamp(30px, 5vw, 54px); letter-spacing: -1.5px;" data-i18n="int_title">
+        Faturamento e Suporte.<br/>
+        Consolidados no mesmo lugar.
+      </h2>
+      <p class="text-gray-500 text-sm md:text-base leading-relaxed" data-i18n="int_desc">
+        Não use dezenas de ferramentas dispersas para faturar clientes e responder tíquetes. Os agentes integrados da AI Solutions se comunicam perfeitamente para emitir cobranças baseadas nas interações dos usuários e fechar ciclos de vendas instantaneamente.
+      </p>
+    </div>
+
+    <!-- Grid of details cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+      <!-- Card 3: Invoicing (Emerald) -->
+      <div class="card-blue rounded-3xl p-8 md:p-10 relative overflow-hidden min-h-[360px] flex flex-col justify-between group shadow-lg hover:shadow-xl hover:-translate-y-1 transition duration-300">
+        <div class="absolute -right-16 -top-16 w-48 h-48 bg-blue-400/20 rounded-full filter blur-xl group-hover:scale-110 transition duration-300"></div>
+        
+        <div>
+          <span class="tag-pill bg-white/10 text-blue-200">AUTO INVOICING</span>
+          <p class="text-[11px] text-blue-200 mt-2 mb-6" data-i18n="show_blue_sub">Emissão automática e relatórios em tempo real.</p>
+          <h3 class="text-xl md:text-2xl font-extrabold text-white mb-3 font-heading" data-i18n="show_blue_title">Faturamento Automático</h3>
+          <p class="text-xs text-blue-100 max-w-xs leading-relaxed font-light" data-i18n="show_blue_desc">
+            Monitore pagamentos efetuados por cartão de crédito ou Pix, gere faturas PDF instantaneamente, atualize os registros contábeis no Hubspot e avise a equipe no Slack em milissegundos.
+          </p>
+        </div>
+
+        <div class="mt-6 bg-white/15 backdrop-blur-md rounded-xl p-3 border border-white/10 flex items-center justify-between text-xs text-white">
+          <div class="flex items-center gap-2">
+            <span class="text-emerald-400">💵</span>
+            <span class="font-bold" data-i18n="show_blue_stat">Total Faturado Hoje:</span>
+          </div>
+          <span class="font-mono bg-black/25 px-2 py-0.5 rounded font-bold text-emerald-300">+R$ 28.450,00</span>
+        </div>
+      </div>
+
+      <!-- Card 4: Multi-Agent Hub -->
+      <div class="card-rose rounded-3xl p-8 md:p-10 relative overflow-hidden min-h-[360px] flex flex-col justify-between group shadow-lg hover:shadow-xl hover:-translate-y-1 transition duration-300">
+        <div class="absolute -right-16 -top-16 w-48 h-48 bg-rose-400/20 rounded-full filter blur-xl group-hover:scale-110 transition duration-300"></div>
+        
+        <div>
+          <span class="tag-pill bg-white/10 text-rose-200">CS MULTI-AGENT HUB</span>
+          <p class="text-[11px] text-rose-200 mt-2 mb-6" data-i18n="show_rose_sub">Gerenciamento inteligente de atendimento técnico.</p>
+          <h3 class="text-xl md:text-2xl font-extrabold text-white mb-3 font-heading" data-i18n="show_rose_title">Suporte ao Cliente Escalável</h3>
+          <p class="text-xs text-rose-100 max-w-xs leading-relaxed font-light" data-i18n="show_rose_desc">
+            Seus clientes são atendidos instantaneamente. Se a inteligência de nível básico não solucionar, o fluxo transfere o contexto limpo para o agente sênior da equipe em tempo real.
+          </p>
+        </div>
+
+        <div class="mt-6 bg-white/15 backdrop-blur-md rounded-xl p-3 border border-white/10 flex items-center gap-3 text-xs text-white">
+          <div class="typing-indicator flex gap-1 items-center bg-black/25 px-2.5 py-1 rounded">
+            <span></span><span></span><span></span>
+          </div>
+          <span class="font-light text-rose-100" data-i18n="show_rose_foot">32 conversas de suporte ativas via WhatsApp agora.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Long Card 5: Auto-scheduling & others (Amber) -->
+    <div class="card-amber rounded-3xl p-8 md:p-10 min-h-[220px] flex flex-col md:flex-row items-start md:items-center justify-between gap-6 group shadow-lg hover:shadow-xl transition duration-300">
+      <div class="max-w-xl">
+        <span class="tag-pill bg-white/10 text-amber-200">EXTRA AUTOMATIONS</span>
+        <h3 class="text-xl md:text-2xl font-extrabold text-white mt-3 mb-2 font-heading" data-i18n="show_amber_title">Agendamento de Eventos & Envio de Campanhas</h3>
+        <p class="text-xs text-amber-100 leading-relaxed font-light" data-i18n="show_amber_desc">
+          Integre seus calendários corporativos. O agente pode organizar reuniões, redigir briefings executivos após ligações no Meet ou Zoom e enviar boletins informativos personalizados para seus leads conforme comportamentos prévios de compra.
+        </p>
+      </div>
+      <button class="bg-black text-white px-5 py-3 rounded-2xl text-xs font-bold shadow hover:bg-gray-900 transition flex-shrink-0 self-start md:self-center" data-i18n="show_amber_btn">Explorar Novas IAs</button>
+    </div>
+
+    <!-- Quote -->
+    <div class="text-center py-14 mt-10 border-t border-gray-100">
+      <p class="text-gray-700 text-xl md:text-2xl italic font-serif leading-relaxed mb-3" data-i18n="show_quote">"O software de automação por IA mais inteligente que já implantamos em nossa infraestrutura."</p>
+      <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">Tech Crunch SaaS Awards</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: Produtividade Extrema. Menos Interfaces Soltas. -->
+<section id="metricas" class="bg-white py-28 px-6 md:px-12 border-b border-gray-100">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+      <div>
+        <p class="text-xs font-bold text-indigo-600 uppercase tracking-widest mb-3" data-i18n="met_sub">Economia Comprovada</p>
+        <h2 class="font-bold text-gray-900 tracking-tight leading-tight mb-6 font-heading" style="font-size: clamp(30px, 5vw, 54px); letter-spacing: -1.5px;" data-i18n="met_title">
+          Mais produtividade.<br/>
+          Menos custos operacionais.
+        </h2>
+        <p class="text-gray-500 text-sm md:text-base leading-relaxed max-w-md" data-i18n="met_desc">
+          Centralize sua operação com agentes de IA autónomos de alta fidelidade e elimine a necessidade de assinar múltiplas plataformas independentes e caras.
+        </p>
+      </div>
+
+      <!-- Tech logos flex matrix -->
+      <div class="flex flex-col gap-4 items-start lg:items-end justify-center">
+        <p class="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-1" data-i18n="met_substitutes">Substitui ferramentas como:</p>
+        <div class="flex flex-col gap-3">
+          <div class="flex gap-3 flex-wrap">
+            <div class="w-12 h-12 bg-gray-50 border border-gray-150 rounded-xl flex items-center justify-center text-xs font-bold text-indigo-500 shadow-sm hover:scale-105 transition cursor-pointer">Zendesk</div>
+            <div class="w-12 h-12 bg-gray-50 border border-gray-150 rounded-xl flex items-center justify-center text-xs font-bold text-gray-700 shadow-sm hover:scale-105 transition cursor-pointer">Webflow</div>
+            <div class="w-12 h-12 bg-gray-50 border border-gray-150 rounded-xl flex items-center justify-center text-xs font-bold text-green-600 shadow-sm hover:scale-105 transition cursor-pointer">ActiveC</div>
+            <div class="w-12 h-12 bg-gray-50 border border-gray-150 rounded-xl flex items-center justify-center text-xs font-bold text-blue-500 shadow-sm hover:scale-105 transition cursor-pointer">Pipedr</div>
+            <div class="w-12 h-12 bg-gray-50 border border-gray-150 rounded-xl flex items-center justify-center text-xs font-bold text-rose-500 shadow-sm hover:scale-105 transition cursor-pointer">Interc</div>
+          </div>
+          <div class="flex gap-3 ml-0 lg:ml-6 flex-wrap">
+            <div class="w-12 h-12 bg-gray-50 border border-gray-150 rounded-xl flex items-center justify-center text-xs font-bold text-purple-600 shadow-sm hover:scale-105 transition cursor-pointer">Typef</div>
+            <div class="w-12 h-12 bg-gray-50 border border-gray-150 rounded-xl flex items-center justify-center text-xs font-bold text-blue-400 shadow-sm hover:scale-105 transition cursor-pointer">Calend</div>
+            <div class="w-12 h-12 bg-gray-50 border border-gray-150 rounded-xl flex items-center justify-center text-xs font-bold text-amber-500 shadow-sm hover:scale-105 transition cursor-pointer">Zapier</div>
+            <div class="w-12 h-12 bg-gray-50 border border-gray-150 rounded-xl flex items-center justify-center text-xs font-bold text-gray-800 shadow-sm hover:scale-105 transition cursor-pointer">Trello</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature comparison summary grid -->
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-8 mt-20 border-t border-gray-100 pt-16">
+      <div>
+        <p class="text-xs font-bold text-indigo-600 uppercase tracking-widest mb-1.5" data-i18n="feat_web_cat">Sites do Zero ●</p>
+        <h4 class="text-sm font-bold text-gray-900 mb-1" data-i18n="feat_web_title">Criação Instantânea</h4>
+        <p class="text-xs text-gray-400" data-i18n="feat_web_desc">Design automatizado e deploy imediato sem necessidade de redigir linhas de código.</p>
+      </div>
+      <div>
+        <p class="text-xs font-bold text-indigo-600 uppercase tracking-widest mb-1.5" data-i18n="feat_agent_cat">WhatsApp & Web ●</p>
+        <h4 class="text-sm font-bold text-gray-900 mb-1" data-i18n="feat_agent_title">Agentes Treináveis</h4>
+        <p class="text-xs text-gray-400" data-i18n="feat_agent_desc">Insira a documentação da sua empresa e implante consultores virtuais integrados.</p>
+      </div>
+      <div>
+        <p class="text-xs font-bold text-indigo-600 uppercase tracking-widest mb-1.5" data-i18n="feat_bill_cat">Faturamento ●</p>
+        <h4 class="text-sm font-bold text-gray-900 mb-1" data-i18n="feat_bill_title">Cobrança Direta</h4>
+        <p class="text-xs text-gray-400" data-i18n="feat_bill_desc">Geração automática de faturas PDF e integração de PIX/Stripe nativos.</p>
+      </div>
+      <div>
+        <p class="text-xs font-bold text-indigo-600 uppercase tracking-widest mb-1.5" data-i18n="feat_cs_cat">Customer Service ●</p>
+        <h4 class="text-sm font-bold text-gray-900 mb-1" data-i18n="feat_cs_title">Respostas em 1.5s</h4>
+        <p class="text-xs text-gray-400" data-i18n="feat_cs_desc">Triagem inteligente de conversas e resolução automatizada de chamados de suporte.</p>
+      </div>
+      <div>
+        <p class="text-xs font-bold text-indigo-600 uppercase tracking-widest mb-1.5" data-i18n="feat_sync_cat">Sincronia ●</p>
+        <h4 class="text-sm font-bold text-gray-900 mb-1" data-i18n="feat_sync_title">Agenda Inteligente</h4>
+        <p class="text-xs text-gray-400" data-i18n="feat_sync_desc">Otimização de calendários corporativos, briefings de voz e relatórios automatizados.</p>
+      </div>
+      <div>
+        <p class="text-xs font-bold text-indigo-600 uppercase tracking-widest mb-1.5" data-i18n="feat_scale_cat">Escalabilidade ●</p>
+        <h4 class="text-sm font-bold text-gray-900 mb-1" data-i18n="feat_scale_title">Operação 24/7</h4>
+        <p class="text-xs text-gray-400" data-i18n="feat_scale_desc">Agentes trabalhando incessantemente na velocidade da luz para seu negócio expandir.</p>
+      </div>
+    </div>
+
+    <!-- Stats row -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20 pt-16 border-t border-gray-150">
+      <div class="text-center bg-gray-50 rounded-2xl p-8 border border-gray-200 shadow-sm">
+        <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2" data-i18n="stat_p1_lbl">Respostas ao Cliente</p>
+        <p class="text-5xl md:text-6xl font-extrabold font-heading text-indigo-600 tracking-tight" style="letter-spacing: -2px;">-90%</p>
+        <p class="text-xs text-gray-500 mt-2 font-medium" data-i18n="stat_p1_desc">no tempo de resposta do suporte de CS</p>
+      </div>
+      <div class="text-center bg-gray-50 rounded-2xl p-8 border border-gray-200 shadow-sm">
+        <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2" data-i18n="stat_p2_lbl">Sites e Landing Pages</p>
+        <p class="text-5xl md:text-6xl font-extrabold font-heading text-indigo-600 tracking-tight" style="letter-spacing: -2px;">10x</p>
+        <p class="text-xs text-gray-500 mt-2 font-medium" data-i18n="stat_p2_desc">mais rápidos para criar e publicar online</p>
+      </div>
+      <div class="text-center bg-gray-50 rounded-2xl p-8 border border-gray-200 shadow-sm">
+        <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2" data-i18n="stat_p3_lbl">Economia Operacional Média</p>
+        <p class="text-5xl md:text-6xl font-extrabold font-heading text-indigo-600 tracking-tight" style="letter-spacing: -2px;">$15k</p>
+        <p class="text-xs text-gray-500 mt-2 font-medium" data-i18n="stat_p3_desc">salvos anualmente em softwares de rotina</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: Adotado pelas equipes do futuro -->
+<section id="parceiros" class="bg-white py-28 px-6 md:px-12 border-b border-gray-100">
+  <div class="max-w-6xl mx-auto">
+    <div class="max-w-2xl mb-16">
+      <p class="text-xs font-bold text-indigo-600 uppercase tracking-widest mb-3" data-i18n="cli_sub">Feedback dos Clientes</p>
+      <h2 class="font-bold text-gray-900 tracking-tight leading-tight mb-6 font-heading" style="font-size: clamp(30px, 5vw, 54px); letter-spacing: -1.5px;" data-i18n="cli_title">
+        Preferido por startups e<br/>empresas inovadoras.
+      </h2>
+    </div>
+
+    <!-- Client spotlight story -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20 items-center bg-gray-50 rounded-3xl p-8 md:p-12 border border-gray-200">
+      <div>
+        <div class="flex items-center gap-2 mb-6">
+          <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-bold text-xs shadow">▲</div>
+          <span class="font-extrabold font-heading text-base tracking-tight text-gray-900">Vercel Inc</span>
+        </div>
+        <blockquote class="text-gray-700 text-lg md:text-xl font-light italic leading-relaxed mb-6 font-serif" data-i18n="cli_vercel_quote">
+          "Implantamos os agentes de CS Support da AI Solutions no nosso Slack corporativo. Em duas semanas, conseguimos mitigar 85% das dúvidas repetitivas dos desenvolvedores sem precisar escalar o time de suporte interno."
+        </blockquote>
+        <a href="#" class="text-sm font-bold text-indigo-600 hover:text-indigo-800 transition" data-i18n="cli_vercel_cta">Ler estudo de caso completo study →</a>
+      </div>
+      <div class="rounded-2xl overflow-hidden bg-gray-200 h-64 shadow-md">
+        <img src="https://placehold.co/540x300/18181b/ffffff?text=Vercel+Automation+Dashboard" alt="Vercel automation dashboard case study" class="w-full h-full object-cover" />
+      </div>
+    </div>
+
+    <!-- Grid of customer review blocks -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Card 1 -->
+      <div class="border border-gray-200 rounded-2xl p-6 hover:shadow-md transition">
+        <div class="flex items-center justify-between mb-4">
+          <span class="font-extrabold font-heading text-sm text-gray-900">Supabase</span>
+          <span class="text-amber-500 text-xs">★★★★★</span>
+        </div>
+        <p class="text-xs text-gray-500 leading-relaxed font-light" data-i18n="cli_c1_desc">"A criação automática de websites facilitou a implantação rápida de páginas promocionais. O deploy é feito na nuvem em segundos."</p>
+        <p class="text-[10px] text-gray-400 font-bold mt-4 uppercase tracking-wider">Antony M., Diretor de Crescimento</p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="border border-gray-200 rounded-2xl p-6 hover:shadow-md transition">
+        <div class="flex items-center justify-between mb-4">
+          <span class="font-extrabold font-heading text-sm text-gray-900">Stripe Tech</span>
+          <span class="text-amber-500 text-xs">★★★★★</span>
+        </div>
+        <p class="text-xs text-gray-500 leading-relaxed font-light" data-i18n="cli_c2_desc">"A automação de faturamento PIX via AI Solutions economizou mais de 15 horas de processamento manual semanais para o financeiro."</p>
+        <p class="text-[10px] text-gray-400 font-bold mt-4 uppercase tracking-wider">Mariana R., Ops Financeiro</p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="border border-gray-200 rounded-2xl p-6 hover:shadow-md transition">
+        <div class="flex items-center justify-between mb-4">
+          <span class="font-extrabold font-heading text-sm text-gray-900">Linear App</span>
+          <span class="text-amber-500 text-xs">★★★★★</span>
+        </div>
+        <p class="text-xs text-gray-500 leading-relaxed font-light" data-i18n="cli_c3_desc">"O suporte CS autónomo integrado ao WhatsApp resolve de imediato as requisições primárias e abre os cards no Linear somente se necessário."</p>
+        <p class="text-[10px] text-gray-400 font-bold mt-4 uppercase tracking-wider">Guilherme K., Líder de CX</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: Teste Gratuitamente -->
+<section class="bg-gray-50 py-28 px-6 md:px-12 border-b border-gray-200 relative overflow-hidden">
+  <div class="absolute -left-10 -bottom-10 w-40 h-40 bg-indigo-500/10 rounded-full filter blur-xl"></div>
+  
+  <div class="max-w-6xl mx-auto">
+    <div class="max-w-3xl mb-16">
+      <h2 class="font-bold text-gray-900 tracking-tight leading-tight mb-6 font-heading" style="font-size: clamp(30px, 5vw, 54px); letter-spacing: -1.5px;" data-i18n="cta_title">
+        Pronto para automatizar?<br/>
+        Crie sua conta gratuitamente.
+      </h2>
+      <p class="text-gray-500 text-sm md:text-base leading-relaxed" data-i18n="cta_desc">
+        Cadastre sua equipe, teste a criação do seu primeiro website de IA, ative agentes autónomos de suporte CS e envie faturas automáticas sem custos por 14 dias.
+      </p>
+    </div>
+
+    <!-- Dynamic layout below CTA description -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Left column: Details and App store buttons -->
+      <div class="flex flex-col gap-6 justify-between">
+        <div class="flex items-center gap-2.5 font-heading font-extrabold text-[19px] text-gray-900 tracking-tight">
+          <div class="w-7 h-7 bg-indigo-600 rounded-lg flex items-center justify-center text-white overflow-hidden shadow">
+            <span class="font-heading text-xs font-black tracking-widest pl-0.5">AI</span>
+          </div>
+          <span>AI Solutions</span>
+        </div>
+        
+        <p class="text-xs text-gray-500 leading-relaxed" data-i18n="cta_app_options">Disponível em aplicativos desktop (macOS & Windows) e interfaces móveis para acompanhamento das métricas de automação em qualquer local.</p>
+
+        <!-- Mock App Store buttons -->
+        <div class="flex flex-row md:flex-col lg:flex-row gap-3">
+          <a href="#" class="inline-flex items-center gap-2 bg-gray-900 text-white rounded-xl px-4 py-2.5 text-xs font-medium hover:bg-black transition w-fit shadow">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            macOS Desktop
+          </a>
+          <a href="#" class="inline-flex items-center gap-2 bg-gray-900 text-white rounded-xl px-4 py-2.5 text-xs font-medium hover:bg-black transition w-fit shadow">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3.18 23.76c.3.17.64.24.99.2l12.64-12.64L13.16 7.5 3.18 23.76zm17.12-11.32l-2.88-1.66L14.5 12l2.92 3.22 2.88-1.66c.83-.48.83-1.64 0-2.12zM2.34.44C2.13.64 2 .96 2 1.37v21.27c0 .41.13.73.34.93l.1.09 11.91-11.91V11.6L2.44.35l-.1.09z"/></svg>
+            Windows App
+          </a>
+        </div>
+      </div>
+
+      <!-- Middle column: Interactive API visual block -->
+      <div class="bg-[#13131A] rounded-2xl p-5 border border-white/5 shadow-md flex flex-col justify-between" id="api-snippet-block">
+        <div>
+          <div class="flex items-center justify-between mb-4 border-b border-white/5 pb-2.5">
+            <div class="flex items-center gap-2">
+              <span class="text-indigo-400">⚡</span>
+              <span class="text-xs font-bold text-white font-heading" data-i18n="cta_api_title">AI Solutions Developer API</span>
+            </div>
+            <span class="tag-pill">v1.4</span>
+          </div>
+          <div class="font-mono text-[10px] text-gray-400 space-y-1 bg-black/30 p-3 rounded-lg border border-white/5 overflow-x-auto">
+            <p class="text-indigo-300">import { AgentHub } from "@aisolutions/sdk";</p>
+            <p class="text-gray-500">// Criar novo agente autónomo</p>
+            <p class="text-white">const agent = await AgentHub.create({</p>
+            <p class="pl-4 text-emerald-300">name: "Suporte Técnico",</p>
+            <p class="pl-4 text-emerald-300">role: "Resolva problemas de login",</p>
+            <p class="pl-4 text-emerald-300">channels: ["whatsapp", "slack"],</p>
+            <p class="pl-4 text-amber-300">billingMode: "automatic"</p>
+            <p class="text-white">});</p>
+            <p class="text-gray-500">// Ativar logs de deploy</p>
+            <p class="text-indigo-300">agent.on("activity", (log) => console.log(log));</p>
+          </div>
+        </div>
+        <p class="text-[10px] text-gray-500 mt-4 leading-relaxed" data-i18n="cta_api_desc">Use a API RESTful nativa ou o SDK oficial em Node.js/Python para integrar automações na sua própria infraestrutura de servidores.</p>
+      </div>
+
+      <!-- Right column: Simulated UI builder interface mockup -->
+      <div class="bg-white rounded-2xl p-5 border border-gray-200 shadow-sm flex flex-col justify-between" id="visual-builder-block">
+        <div>
+          <div class="flex items-center justify-between mb-4 border-b border-gray-100 pb-2.5">
+            <div class="flex items-center gap-2">
+              <span class="text-teal-600">🎨</span>
+              <span class="text-xs font-bold text-gray-800 font-heading" data-i18n="cta_visual_title">Visual Agent Builder</span>
+            </div>
+            <span class="text-[10px] bg-emerald-50 text-emerald-600 font-bold px-1.5 py-0.2 rounded-full" data-i18n="cta_visual_active">Ativo</span>
+          </div>
+          
+          <div class="space-y-3">
+            <div class="bg-gray-50 border border-gray-150 rounded-xl p-3">
+              <span class="text-[9px] text-gray-400 font-semibold block uppercase" data-i18n="cta_visual_p1_lbl">1. Prompt de Definição</span>
+              <p class="text-xs text-gray-700 font-medium" data-i18n="cta_visual_p1_desc">"Desenhe uma landing page de venda de vinhos finos."</p>
+            </div>
+
+            <div class="bg-gray-50 border border-gray-155 rounded-xl p-3">
+              <span class="text-[9px] text-gray-400 font-semibold block uppercase" data-i18n="cta_visual_p2_lbl">2. Configuração de Cores</span>
+              <div class="flex gap-2 mt-1">
+                <span class="w-4 h-4 bg-red-800 rounded"></span>
+                <span class="w-4 h-4 bg-amber-100 rounded"></span>
+                <span class="w-4 h-4 bg-gray-900 rounded"></span>
+                <span class="text-[10px] text-gray-500 font-medium font-mono" data-i18n="cta_visual_p2_desc">Bordeaux & Cream</span>
+              </div>
+            </div>
+
+            <div class="bg-gray-50 border border-gray-150 rounded-xl p-3">
+              <span class="text-[9px] text-gray-400 font-semibold block uppercase" data-i18n="cta_visual_p3_lbl">3. Integrações de Serviço</span>
+              <div class="flex gap-1.5 mt-1 flex-wrap">
+                <span class="text-[9px] bg-indigo-50 border border-indigo-100 text-indigo-600 px-1.5 py-0.2 rounded" data-i18n="cta_visual_p3_opt1">Stripe Cobrança</span>
+                <span class="text-[9px] bg-rose-50 border border-rose-100 text-rose-600 px-1.5 py-0.2 rounded" data-i18n="cta_visual_p3_opt2">WhatsApp CS</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="bg-indigo-600 text-white w-full py-2 mt-4 rounded-xl text-xs font-bold shadow hover:bg-indigo-700 transition" data-i18n="cta_visual_btn">Gerar Landing Page e Agente</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-white border-t border-gray-200 py-16 px-6 md:px-12">
+  <div class="max-w-6xl mx-auto">
+    <!-- Top row: Brand Logo + socials -->
+    <div class="flex items-center justify-between mb-12">
+      <div class="flex items-center gap-2.5 font-heading font-extrabold text-[17px] text-gray-900 tracking-tight">
+        <div class="w-6.5 h-6.5 bg-indigo-600 rounded-lg flex items-center justify-center text-white overflow-hidden shadow-md shadow-indigo-100">
+          <span class="font-heading text-[10px] font-black tracking-widest pl-0.5">AI</span>
+        </div>
+        <span>AI Solutions</span>
+      </div>
+      <div class="flex items-center gap-5 text-gray-400">
+        <a href="#" class="hover:text-indigo-600 transition text-sm font-semibold">𝕏</a>
+        <a href="#" class="hover:text-indigo-600 transition text-sm font-semibold">LinkedIn</a>
+        <a href="#" class="hover:text-indigo-600 transition text-sm font-semibold">YouTube</a>
+        <a href="#" class="hover:text-indigo-600 transition text-sm font-semibold">GitHub</a>
+      </div>
+    </div>
+
+    <!-- Categorized links grid -->
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
+      <div>
+        <p class="text-xs font-bold text-gray-800 uppercase tracking-widest mb-3.5" data-i18n="foot_solutions_cat">Nossas Soluções</p>
+        <ul class="space-y-2">
+          <li><a href="solucoes/criacao-conteudo.html" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition" data-i18n="sol_criacao_conteudo">Criação de conteúdo</a></li>
+          <li><a href="solucoes/atendimento-cliente.html" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition" data-i18n="sol_atendimento_cliente">Atendimento automático ao cliente</a></li>
+          <li><a href="solucoes/automacao-faturacao.html" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition" data-i18n="sol_automacao_faturacao">Automação de faturação e documentos</a></li>
+          <li><a href="solucoes/automacao-marcacoes.html" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition" data-i18n="sol_automacao_marcacoes">Automação de marcações</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-xs font-bold text-gray-800 uppercase tracking-widest mb-3.5" data-i18n="foot_dev_cat">Recursos DEV</p>
+        <ul class="space-y-2">
+          <li><a href="#" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition">Documentação da API</a></li>
+          <li><a href="#" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition">SDK Node/Python</a></li>
+          <li><a href="#" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition">Status dos Servidores</a></li>
+          <li><a href="#" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition">Modelos Suportados</a></li>
+          <li><a href="#" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition">Central de Segurança</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-xs font-bold text-gray-800 uppercase tracking-widest mb-3.5" data-i18n="foot_prod_cat">Produto & Planos</p>
+        <ul class="space-y-2">
+          <li><a href="#" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition">Preços & Assentos</a></li>
+          <li><a href="#" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition">Demonstração ao Vivo</a></li>
+          <li><a href="#" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition">Estudos de Caso</a></li>
+          <li><a href="#" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition">Atualizações Mensais</a></li>
+          <li><a href="#" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition">Afiliados</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-xs font-bold text-gray-800 uppercase tracking-widest mb-3.5" data-i18n="foot_corp_cat">Institucional</p>
+        <ul class="space-y-2">
+          <li><a href="#" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition">Sobre a AI Solutions</a></li>
+          <li><a href="#" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition">Trabalhe Conosco</a></li>
+          <li><a href="#" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition">Blog de Engenharia</a></li>
+          <li><a href="#" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition">Notícias de IA</a></li>
+          <li><a href="#" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition">Fale com Vendas</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-xs font-bold text-gray-800 uppercase tracking-widest mb-3.5" data-i18n="foot_int_cat">Integrações API</p>
+        <ul class="space-y-2">
+          <li><a href="#" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition">Slack App</a></li>
+          <li><a href="#" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition">WhatsApp Business</a></li>
+          <li><a href="#" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition">Stripe Connector</a></li>
+          <li><a href="#" class="footer-link text-xs text-gray-500 hover:text-indigo-600 transition">Hubspot Webhook</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom sub-row: copyright and terms -->
+    <div class="border-t border-gray-150 pt-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div class="flex items-center gap-1.5">
+        <span class="text-xs text-gray-400" data-i18n="foot_developed_by">Desenvolvido com robustez por</span>
+        <span class="text-xs font-bold text-gray-700">AI Solutions Team</span>
+      </div>
+      <div class="flex flex-wrap gap-4 text-xs">
+        <a href="#" class="text-gray-400 hover:text-gray-600 transition" data-i18n="foot_terms">Privacidade e Termos</a>
+        <a href="#" class="text-gray-400 hover:text-gray-600 transition" data-i18n="foot_security">Políticas de Segurança</a>
+        <a href="#" class="text-gray-400 hover:text-gray-600 transition" data-i18n="foot_cookies">Cookies</a>
+        <a href="#" class="text-gray-400 hover:text-gray-600 transition" data-i18n="foot_accessibility">Acessibilidade</a>
+        <span class="text-gray-400 font-medium" data-i18n="foot_copyright">© 2026 AI Solutions Labs, Inc.</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // TRANSLATIONS DATA OBJECT
+  const translations = {
+    pt: {
+      nav_solutions: "Soluções",
+      nav_resources: "Recursos",
+      nav_benefits: "Benefícios",
+      nav_metrics: "Métricas",
+      nav_clients: "Clientes",
+      nav_signin: "Entrar",
+      nav_signup: "Começar Grátis",
+      
+      sol_atendimento_cliente: "Atendimento automático ao cliente",
+      sol_automacao_marcacoes: "Automação de marcações",
+      sol_criacao_conteudo: "Criação de conteúdo",
+      sol_gestao_reviews: "Gestão de reviews",
+      sol_sistemas_ai_internos: "Sistemas de AI internos",
+      sol_automacao_tarefas: "Automatização de tarefas repetitivas",
+      sol_propostas_orcamentos: "Geração de propostas e orçamentos",
+      sol_ai_recrutamento: "AI para recrutamento",
+      sol_followup_leads: "Follow-up automático de leads",
+      sol_transcricao_reunioes: "Transcrição e resumo de reuniões",
+      sol_automacao_faturacao: "Automação de faturação e documentos",
+      sol_dashboards_relatorios: "Dashboards e relatórios automáticos",
+      sol_sistemas_personalizados: "Sistemas personalizados simples",
+      
+      hero_used_by: "Utilizado por equipes em",
+      hero_title: "Automatize sua operação.<br/><span class=\"bg-gradient-to-r from-indigo-400 via-violet-400 to-emerald-400 bg-clip-text text-transparent\">Crie com inteligência.</span>",
+      hero_subtitle: "A AI Solutions implanta agentes autónomos sob demanda na sua empresa para gerar sites completos, faturar clientes de forma automatizada e responder chats de suporte ao cliente 24/7.",
+      hero_cta1: "Criar Meu Primeiro Agente",
+      hero_cta2: "Ver demonstração interativa",
+      
+      mock_fl1_title: "Site Criado",
+      mock_fl1_badge: "ONLINE",
+      mock_fl2_title: "Faturamento",
+      mock_fl2_desc: "Fatura #INV-2049 enviada",
+      mock_agents_status: "AI AGENTS: ATIVOS",
+      mock_central_panel: "Painel Central",
+      mock_agent_hub: "AI Solutions Agent Hub",
+      mock_web_creator: "🌐 Criador de Sites",
+      mock_cs_support: "💬 Agentes de CS Support",
+      mock_auto_billing: "💵 Faturamento Auto",
+      mock_data_analytics: "📊 Análise de Dados",
+      mock_realtime_log: "Processando Atividades em Tempo Real",
+      mock_active_agents: "3 Agentes Rodando",
+      
+      mock_log1_title: "🌐 AGENTE CRIADOR DE WEBSITES",
+      mock_log1_action: "Ação: Gerando HTML/CSS",
+      mock_log1_desc: "Construindo landing page para <strong class=\"text-white\">Lumi Bakery Gourmet</strong>...",
+      mock_log1_sub1: "✓ Design móvel otimizado",
+      mock_log1_sub2: "✓ Paleta gerada baseada em HSL",
+      mock_log1_sub3: "⚡ Criando imagens de assets...",
+      
+      mock_log2_title: "💵 FATURAMENTO AUTOMÁTICO",
+      mock_time_12s: "há 12 seg",
+      mock_log2_desc: "Cliente <strong class=\"text-white\">Carlos Mendes da Silva</strong> efetuou pagamento via PIX.",
+      mock_log2_details: "Fatura automatizada #INV-1093 criada -> Enviado PDF de confirmação via e-mail e integração webhook no Slack executada (R$ 840,00).",
+      
+      mock_log3_title: "💬 AGENTE CS SUPPORT",
+      mock_time_2m: "há 2 min",
+      mock_log3_desc: "Atendimento Ticket <strong class=\"text-white\">#5092 (Suporte técnico)</strong> fechado em 4.8s.",
+      mock_log3_details: "\"Obrigado! O agente resolveu meu problema de login imediatamente.\" - Avaliação: ★★★★★",
+      hero_integration: "Integrações prontas com",
+      
+      ben_sub: "Automatização Escalonável",
+      ben_heading: "Seu negócio rodando dia e noite.<br/>Sem interrupções ou erros.",
+      ben_desc: "Substitua workflows manuais complexos por agentes autónomos configurados em minutos. Deixe o trabalho repetitivo com quem faz rápido e com máxima precisão.",
+      ben_item1_title: "Criação Instantânea de Websites",
+      ben_item1_desc: "Desenvolva landing pages, sites institucionais e portfolios adaptados com SEO nativo e design responsivo apenas enviando descrições textuais.",
+      ben_item2_title: "Configuração de Agentes Autônomos",
+      ben_item2_desc: "Crie assistentes virtuais de marca personalizados, capazes de interagir com seus clientes pelo WhatsApp, Slack ou chat do site, buscando dados da sua base interna.",
+      ben_item3_title: "Faturamento e Cobrança Automática",
+      ben_item3_desc: "Monitore transações, emita faturas automáticas via PIX/Cartão e envie avisos de cobrança periódicos sem a necessidade de intervenção do time financeiro.",
+      ben_item4_title: "Suporte CS Autônomo e Multilíngue",
+      ben_item4_desc: "Atendimento ao cliente em mais de 45 idiomas com resolução imediata de dúvidas frequentes, rastreamento de pedidos e abertura de chamados técnicos complexos.",
+      
+      ben_pill_cost: "Redução de Custos",
+      ben_pill_auto: "Automação Completa",
+      ben_pill_start: "Iniciar Teste Já",
+      
+      chat_header: "Suporte Inteligente (Agente AI-CS)",
+      chat_status: "Atendimento ativo e resolvendo",
+      chat_client_carlos: "Cliente (Carlos)",
+      chat_client_q1: "Olá! Como faço para alterar o plano da minha equipe para a modalidade anual e adicionar mais dois assentos?",
+      chat_agent_name: "✨ Agente AI Solutions",
+      chat_agent_r1: "Olá, Carlos! Identifiquei sua conta e posso realizar esse upgrade agora mesmo. O plano Anual Pro da sua empresa ficará com desconto de 20%, e os assentos extras serão inclusos no proporcional. Deseja prosseguir?",
+      chat_client_q2: "Sim, por favor. Pode autorizar o upgrade na cobrança automática cadastrada.",
+      chat_success: "Sucesso",
+      chat_upg_done: "✓ Upgrade Concluído!",
+      chat_upg_desc: "Alterado para Plano Anual Pro. Cobrança de R$ 2.400,00 processada automaticamente na sua conta bancária. PDF enviado.",
+      chat_paid: "PAGO PIX",
+      chat_finalizing: "Agente AI finalizando processo...",
+      
+      show_sub: "Assistentes Autônomos",
+      show_title: "Consulte e implante seus<br/>assistentes sob demanda.",
+      show_cta_catalog: "Ver catálogo completo de IAs",
+      
+      show_teal_sub: "Geração automática de páginas web.",
+      show_teal_title: "Criação ágil de<br/>Websites completas.",
+      show_teal_desc: "Escreva o conceito, adicione as diretrizes de cores e veja o agente desenhar o layout, otimizar o SEO e publicar seu novo site na nuvem em segundos.",
+      show_teal_foot: "Disponível em HTML/Tailwind CDN",
+      show_teal_btn: "Experimentar Criador",
+      
+      show_purple_sub: "Desenvolvimento rápido de personas de IA.",
+      show_purple_title: "Agentes configurados<br/>com o tom da sua marca.",
+      show_purple_desc: "Configure assistentes virtuais de suporte técnico, copywriters e consultores comerciais enviando arquivos PDF ou páginas de documentação.",
+      show_purple_foot: "Ativação via WhatsApp & Chat",
+      show_purple_btn: "Configurar Agente",
+      
+      int_sub: "Fluxos Integrados",
+      int_title: "Faturamento e Suporte.<br/>Consolidados no mesmo lugar.",
+      int_desc: "Não use dezenas de ferramentas dispersas para faturar clientes e responder tíquetes. Os agentes integrados da AI Solutions se comunicam perfeitamente para emitir cobranças baseadas nas interações dos usuários e fechar ciclos de vendas instantaneamente.",
+      
+      show_blue_sub: "Emissão automática e relatórios em tempo real.",
+      show_blue_title: "Faturamento Automático",
+      show_blue_desc: "Monitore pagamentos efetuados por cartão de crédito ou Pix, gere faturas PDF instantaneamente, atualize os registros contábeis no Hubspot e avise a equipe no Slack em milissegundos.",
+      show_blue_stat: "Total Faturado Hoje:",
+      
+      show_rose_sub: "Gerenciamento inteligente de atendimento técnico.",
+      show_rose_title: "Suporte ao Cliente Escalável",
+      show_rose_desc: "Seus clientes são atendidos instantaneamente. Se a inteligência de nível básico não solucionar, o fluxo transfere o contexto limpo para o agente sênior da equipe em tempo real.",
+      show_rose_foot: "32 conversas de suporte ativas via WhatsApp agora.",
+      
+      show_amber_title: "Agendamento de Eventos & Envio de Campanhas",
+      show_amber_desc: "Integre seus calendários corporativos. O agente pode organizar reuniões, redigir briefings executivos após ligações no Meet ou Zoom e enviar boletins informativos personalizados para seus leads conforme comportamentos prévios de compra.",
+      show_amber_btn: "Explorar Novas IAs",
+      show_quote: "\"O software de automação por IA mais inteligente que já implantamos em nossa infraestrutura.\"",
+      
+      met_sub: "Economia Comprovada",
+      met_title: "Mais produtividade.<br/>Menos custos operacionais.",
+      met_desc: "Centralize sua operação com agentes de IA autónomos de alta fidelidade e elimine a necessidade de assinar múltiplas plataformas independentes e caras.",
+      met_substitutes: "Substitui ferramentas como:",
+      
+      feat_web_cat: "Sites do Zero ●",
+      feat_web_title: "Criação Instantânea",
+      feat_web_desc: "Design automatizado e deploy imediato sem necessidade de redigir linhas de código.",
+      feat_agent_cat: "WhatsApp & Web ●",
+      feat_agent_title: "Agentes Treináveis",
+      feat_agent_desc: "Insira a documentação da sua empresa e implante consultores virtuais integrados.",
+      feat_bill_cat: "Faturamento ●",
+      feat_bill_title: "Cobrança Direta",
+      feat_bill_desc: "Geração automática de faturas PDF e integração de PIX/Stripe nativos.",
+      feat_cs_cat: "Customer Service ●",
+      feat_cs_title: "Respostas em 1.5s",
+      feat_cs_desc: "Triagem inteligente de conversas e resolução automatizada de chamados de suporte.",
+      feat_sync_cat: "Sincronia ●",
+      feat_sync_title: "Agenda Inteligente",
+      feat_sync_desc: "Otimização de calendários corporativos, briefings de voz e relatórios automatizados.",
+      feat_scale_cat: "Escalabilidade ●",
+      feat_scale_title: "Operação 24/7",
+      feat_scale_desc: "Agentes trabalhando incessantemente na velocidade da luz para seu negócio expandir.",
+      
+      stat_p1_lbl: "Respostas ao Cliente",
+      stat_p1_desc: "no tempo de resposta do suporte de CS",
+      stat_p2_lbl: "Sites e Landing Pages",
+      stat_p2_desc: "mais rápidos para criar e publicar online",
+      stat_p3_lbl: "Economia Operacional Média",
+      stat_p3_desc: "salvos anualmente em softwares de rotina",
+      
+      cli_sub: "Feedback dos Clientes",
+      cli_title: "Preferido por startups e<br/>empresas inovadoras.",
+      cli_vercel_quote: "\"Implantamos os agentes de CS Support da AI Solutions no nosso Slack corporativo. Em duas semanas, conseguimos mitigar 85% das dúvidas repetitivas dos desenvolvedores sem precisar escalar o time de suporte interno.\"",
+      cli_vercel_cta: "Ler estudo de caso completo →",
+      cli_c1_desc: "\"A criação automática de websites facilitou a implantação rápida de páginas promocionais. O deploy é feito na nuvem em segundos.\"",
+      cli_c2_desc: "\"A automação de faturamento PIX via AI Solutions economizou mais de 15 horas de processamento manual semanais para o financeiro.\"",
+      cli_c3_desc: "\"O suporte CS autónomo integrado ao WhatsApp resolve de imediato as requisições primárias e abre os cards no Linear somente se necessário.\"",
+      
+      cta_title: "Pronto para automatizar?<br/>Crie sua conta gratuitamente.",
+      cta_desc: "Cadastre sua equipe, teste a criação do seu primeiro website de IA, ative agentes autónomos de suporte CS e envie faturas automáticas sem custos por 14 dias.",
+      cta_app_options: "Disponível em aplicativos desktop (macOS & Windows) e interfaces móveis para acompanhamento das métricas de automação em qualquer local.",
+      
+      cta_api_title: "AI Solutions Developer API",
+      cta_api_desc: "Use a API RESTful nativa ou o SDK oficial em Node.js/Python para integrar automações na sua própria infraestrutura de servidores.",
+      cta_visual_title: "Visual Agent Builder",
+      cta_visual_active: "Ativo",
+      cta_visual_p1_lbl: "1. Prompt de Definição",
+      cta_visual_p1_desc: "\"Desenhe uma landing page de venda de vinhos finos.\"",
+      cta_visual_p2_lbl: "2. Configuração de Cores",
+      cta_visual_p2_desc: "Bordeaux & Cream",
+      cta_visual_p3_lbl: "3. Integrações de Serviço",
+      cta_visual_p3_opt1: "Stripe Cobrança",
+      cta_visual_p3_opt2: "WhatsApp CS",
+      cta_visual_btn: "Gerar Landing Page e Agente",
+      
+      foot_solutions_cat: "Nossas Soluções",
+      foot_dev_cat: "Recursos DEV",
+      foot_prod_cat: "Produto & Planos",
+      foot_corp_cat: "Institucional",
+      foot_int_cat: "Integrações API",
+      foot_developed_by: "Desenvolvido com robustez por",
+      foot_terms: "Privacidade e Termos",
+      foot_security: "Políticas de Segurança",
+      foot_cookies: "Cookies",
+      foot_accessibility: "Acessibilidade",
+      foot_copyright: "© 2026 AI Solutions Labs, Inc."
+    },
+    en: {
+      nav_solutions: "Solutions",
+      nav_resources: "Resources",
+      nav_benefits: "Benefits",
+      nav_metrics: "Metrics",
+      nav_clients: "Clients",
+      nav_signin: "Sign In",
+      nav_signup: "Start Free",
+      
+      sol_atendimento_cliente: "Automated customer service",
+      sol_automacao_marcacoes: "Booking automation",
+      sol_criacao_conteudo: "Content creation",
+      sol_gestao_reviews: "Reviews management",
+      sol_sistemas_ai_internos: "Internal AI systems",
+      sol_automacao_tarefas: "Repetitive task automation",
+      sol_propostas_orcamentos: "Proposal & budget generation",
+      sol_ai_recrutamento: "AI for recruitment",
+      sol_followup_leads: "Automated lead follow-up",
+      sol_transcricao_reunioes: "Meeting transcription & summary",
+      sol_automacao_faturacao: "Billing & document automation",
+      sol_dashboards_relatorios: "Automated dashboards & reports",
+      sol_sistemas_personalizados: "Simple custom systems",
+      
+      hero_used_by: "Used by teams at",
+      hero_title: "Automate your operations.<br/><span class=\"bg-gradient-to-r from-indigo-400 via-violet-400 to-emerald-400 bg-clip-text text-transparent\">Create with intelligence.</span>",
+      hero_subtitle: "AI Solutions deploys on-demand autonomous agents in your company to build complete websites, automate client billing, and resolve customer support chats 24/7.",
+      hero_cta1: "Create My First Agent",
+      hero_cta2: "Watch interactive demo",
+      
+      mock_fl1_title: "Website Created",
+      mock_fl1_badge: "ONLINE",
+      mock_fl2_title: "Invoicing",
+      mock_fl2_desc: "Invoice #INV-2049 sent",
+      mock_agents_status: "AI AGENTS: ACTIVE",
+      mock_central_panel: "Central Control",
+      mock_agent_hub: "AI Solutions Agent Hub",
+      mock_web_creator: "🌐 Web Creator",
+      mock_cs_support: "💬 CS Support Agents",
+      mock_auto_billing: "💵 Auto Invoicing",
+      mock_data_analytics: "📊 Data Analytics",
+      mock_realtime_log: "Processing Real-Time Activities",
+      mock_active_agents: "3 Agents Running",
+      
+      mock_log1_title: "🌐 WEBSITE CREATOR AGENT",
+      mock_log1_action: "Action: Generating HTML/CSS",
+      mock_log1_desc: "Building landing page for <strong class=\"text-white\">Lumi Bakery Gourmet</strong>...",
+      mock_log1_sub1: "✓ Mobile responsive optimized",
+      mock_log1_sub2: "✓ HSL-based color palette generated",
+      mock_log1_sub3: "⚡ Generating asset images...",
+      
+      mock_log2_title: "💵 AUTOMATIC INVOICING",
+      mock_time_12s: "12s ago",
+      mock_log2_desc: "Client <strong class=\"text-white\">Carlos Mendes da Silva</strong> paid via PIX.",
+      mock_log2_details: "Automated invoice #INV-1093 created -> Confirmation PDF emailed & Slack webhook integration executed ($160.00).",
+      
+      mock_log3_title: "💬 CS SUPPORT AGENT",
+      mock_time_2m: "2 min ago",
+      mock_log3_desc: "Support Ticket <strong class=\"text-white\">#5092 (Technical support)</strong> closed in 4.8s.",
+      mock_log3_details: "\"Thanks! The agent resolved my login issue immediately.\" - Rating: ★★★★★",
+      hero_integration: "Ready integrations with",
+      
+      ben_sub: "Scalable Automation",
+      ben_heading: "Your business running day and night.<br/>Without interruptions or errors.",
+      ben_desc: "Replace complex manual workflows with autonomous agents configured in minutes. Leave repetitive work to those who do it fast and with maximum precision.",
+      ben_item1_title: "Instant Website Creation",
+      ben_item1_desc: "Develop landing pages, corporate sites and custom portfolios with native SEO and responsive design just by sending text prompts.",
+      ben_item2_title: "Autonomous Agent Setup",
+      ben_item2_desc: "Create customized brand virtual assistants capable of interacting with customers via WhatsApp, Slack, or website chat, sourcing data from your internal base.",
+      ben_item3_title: "Automatic Billing & Collections",
+      ben_item3_desc: "Monitor transactions, issue automated invoices via credit card or bank transfers, and send periodic alerts without needing finance team intervention.",
+      ben_item4_title: "Multilingual CS Support Agent",
+      ben_item4_desc: "Customer service in 45+ languages with immediate resolution of FAQs, delivery tracking, and technical ticketing delegation.",
+      
+      ben_pill_cost: "Cost Reduction",
+      ben_pill_auto: "Full Automation",
+      ben_pill_start: "Start Free Trial",
+      
+      chat_header: "Smart Support (AI-CS Agent)",
+      chat_status: "Agent active & resolving issues",
+      chat_client_carlos: "Client (Carlos)",
+      chat_client_q1: "Hello! How can I upgrade my team's plan to annual and add two more seats?",
+      chat_agent_name: "✨ AI Solutions Agent",
+      chat_agent_r1: "Hello Carlos! I identified your account and can apply this upgrade right now. Your Annual Pro plan will receive a 20% discount, and extra seats will be added proportionally. Shall we proceed?",
+      chat_client_q2: "Yes, please. You can authorize the upgrade using the automatic billing method on file.",
+      chat_success: "Success",
+      chat_upg_done: "✓ Upgrade Completed!",
+      chat_upg_desc: "Changed to Annual Pro Plan. Payment of $480.00 processed automatically on your card. Confirmation PDF sent.",
+      chat_paid: "PAID",
+      chat_finalizing: "AI Agent finalizing process...",
+      
+      show_sub: "Autonomous Assistants",
+      show_title: "Consult and deploy your<br/>assistentes on-demand.",
+      show_cta_catalog: "View full IA catalog",
+      
+      show_teal_sub: "Automatic website generation.",
+      show_teal_title: "Agile creation of<br/>complete Websites.",
+      show_teal_desc: "Write the concept, add color guidelines, and watch the agent draft the layout, optimize SEO, and publish your new website online in seconds.",
+      show_teal_foot: "Available in HTML/Tailwind CDN",
+      show_teal_btn: "Try Creator Now",
+      
+      show_purple_sub: "Rapid brand persona developer.",
+      show_purple_title: "Agents configured with<br/>your brand's tone.",
+      show_purple_desc: "Configure technical support virtual assistants, copywriters, and sales advisors by uploading PDF specs or knowledge base pages.",
+      show_purple_foot: "Activation via WhatsApp & Chat",
+      show_purple_btn: "Configure Agent",
+      
+      int_sub: "Integrated Workflows",
+      int_title: "Billing and Support.<br/>Consolidated in one place.",
+      int_desc: "Do not use dozens of separate tools to invoice clients and answer tickets. AI Solutions' integrated agents communicate seamlessly to issue charges based on client usage and close sales instantly.",
+      
+      show_blue_sub: "Automated billing and real-time reports.",
+      show_blue_title: "Automated Billing",
+      show_blue_desc: "Monitor credit card and online payments, generate PDF invoices instantly, update Hubspot metrics, and alert the team on Slack in milliseconds.",
+      show_blue_stat: "Total Billed Today:",
+      
+      show_rose_sub: "Smart technical support ticket management.",
+      show_rose_title: "Scalable Customer Support",
+      show_rose_desc: "Your customers are answered instantly. If first-tier automation doesn't solve it, the system hands over clean ticket context to a live senior representative in real-time.",
+      show_rose_foot: "32 active WhatsApp support chats right now.",
+      
+      show_amber_title: "Event Scheduling & Campaign Dispatches",
+      show_amber_desc: "Integrate your corporate calendars. The agent can organize meetings, write debriefing drafts after Zoom/Meet calls, and dispatch personalized marketing newsletters to leads.",
+      show_amber_btn: "Explore New IAs",
+      show_quote: "\"The smartest AI automation software we have ever deployed in our digital infrastructure.\"",
+      
+      met_sub: "Proven Savings",
+      met_title: "More productivity.<br/>Fewer operational costs.",
+      met_desc: "Centralize your operation with highly capable autonomous agents and stop paying for multiple expensive separate services.",
+      met_substitutes: "Replaces tools like:",
+      
+      feat_web_cat: "Zero-Code Sites ●",
+      feat_web_title: "Instant Deploy",
+      feat_web_desc: "Automated design and immediate cloud publish without writing a line of code.",
+      feat_agent_cat: "WhatsApp & Web ●",
+      feat_agent_title: "Trainable Agents",
+      feat_agent_desc: "Provide your brand manuals and deploy customized, trained virtual consultants.",
+      feat_bill_cat: "Billing Hub ●",
+      feat_bill_title: "Direct Invoicing",
+      feat_bill_desc: "Automatic PDF generator and native Stripe/Card integrations.",
+      feat_cs_cat: "Customer Care ●",
+      feat_cs_title: "1.5s Responses",
+      feat_cs_desc: "Intelligent triage algorithms and automatic resolution of primary customer tickets.",
+      feat_sync_cat: "Synchronicity ●",
+      feat_sync_title: "Smart Booking",
+      feat_sync_desc: "Corporate calendar sync, voice debriefing summaries, and automated executive reports.",
+      feat_scale_cat: "Scalability ●",
+      feat_scale_title: "24/7 Operations",
+      feat_scale_desc: "Agents working continuously at the speed of light to scale your corporate outputs.",
+      
+      stat_p1_lbl: "Customer Response",
+      stat_p1_desc: "reduction in CS support queue wait times",
+      stat_p2_lbl: "Websites & Landing Pages",
+      stat_p2_desc: "faster to create, design and launch online",
+      stat_p3_lbl: "Average Operational Savings",
+      stat_p3_desc: "saved annually in software subscriptions",
+      
+      cli_sub: "Client Feedback",
+      cli_title: "Preferred by startups and<br/>innovative companies.",
+      cli_vercel_quote: "\"We deployed AI Solutions' customer support agents in our workspace. Within two weeks, we mitigated 85% of developer inquiries without having to scale our support staff.\"",
+      cli_vercel_cta: "Read full study →",
+      cli_c1_desc: "\"Automated website builder made promoting new features easy. Instant cloud deployment is absolutely fantastic.\"",
+      cli_c2_desc: "\"Pix and Stripe automated billing saved our finance team over 15 hours of manual reporting every single week.\"",
+      cli_c3_desc: "\"WhatsApp support assistant directly solves FAQs and only drafts Linear issues when human triage is needed.\"",
+      
+      cta_title: "Ready to automate?<br/>Create your account for free.",
+      cta_desc: "Register your team, test creating your first AI landing page, activate active support agents, and enjoy auto-billing free for 14 days.",
+      cta_app_options: "Available on native desktop apps (macOS & Windows) and mobile dashboards to follow billing details on the go.",
+      
+      cta_api_title: "AI Solutions Developer API",
+      cta_api_desc: "Use the RESTful API or Node.js/Python SDKs to integrate workflows directly into your servers.",
+      cta_visual_title: "Visual Agent Builder",
+      cta_visual_active: "Active",
+      cta_visual_p1_lbl: "1. Prompt definition",
+      cta_visual_p1_desc: "\"Draft a landing page to sell high-end organic wines.\"",
+      cta_visual_p2_lbl: "2. Color Palette Setup",
+      cta_visual_p2_desc: "Bordeaux & Cream Theme",
+      cta_visual_p3_lbl: "3. Service Connectors",
+      cta_visual_p3_opt1: "Stripe Billing",
+      cta_visual_p3_opt2: "WhatsApp Agent",
+      cta_visual_btn: "Deploy Landing Page & Agent",
+      
+      foot_solutions_cat: "Solutions",
+      foot_dev_cat: "DEV Resources",
+      foot_prod_cat: "Product & Plans",
+      foot_corp_cat: "Company",
+      foot_int_cat: "API Connectors",
+      foot_developed_by: "Built with robustness by",
+      foot_terms: "Privacy & Terms",
+      foot_security: "Security Policy",
+      foot_cookies: "Cookies Setup",
+      foot_accessibility: "Accessibility",
+      foot_copyright: "© 2026 AI Solutions Labs, Inc."
+    },
+    fr: {
+      nav_solutions: "Solutions",
+      nav_resources: "Ressources",
+      nav_benefits: "Avantages",
+      nav_metrics: "Mesures",
+      nav_clients: "Clients",
+      nav_signin: "Connexion",
+      nav_signup: "Essai Gratuit",
+      
+      sol_atendimento_cliente: "Service client automatisé",
+      sol_automacao_marcacoes: "Automatisation des réservations",
+      sol_criacao_conteudo: "Création de contenu",
+      sol_gestao_reviews: "Gestion des avis",
+      sol_sistemas_ai_internos: "Systèmes d'IA internes",
+      sol_automacao_tarefas: "Automatisation des tâches répétitives",
+      sol_propostas_orcamentos: "Génération de propositions & budgets",
+      sol_ai_recrutamento: "L'IA pour le recrutement",
+      sol_followup_leads: "Suivi automatique des prospects",
+      sol_transcricao_reunioes: "Transcription & résumé de réunions",
+      sol_automacao_faturacao: "Automatisation de la facturation",
+      sol_dashboards_relatorios: "Tableaux de bord & rapports auto",
+      sol_sistemas_personalizados: "Systèmes personnalisés simples",
+      
+      hero_used_by: "Utilisé par les équipes chez",
+      hero_title: "Automatisez vos opérations.<br/><span class=\"bg-gradient-to-r from-indigo-400 via-violet-400 to-emerald-400 bg-clip-text text-transparent\">Créez avec intelligence.</span>",
+      hero_subtitle: "AI Solutions déploie des agents autonomes à la demande pour concevoir des sites web complets, facturer automatiquement et gérer votre support client 24h/7.",
+      hero_cta1: "Créer mon premier agent",
+      hero_cta2: "Voir la démo interactive",
+      
+      mock_fl1_title: "Site Web Créé",
+      mock_fl1_badge: "EN LIGNE",
+      mock_fl2_title: "Facturation",
+      mock_fl2_desc: "Facture #INV-2049 envoyée",
+      mock_agents_status: "AGENTS IA : ACTIFS",
+      mock_central_panel: "Panneau Central",
+      mock_agent_hub: "AI Solutions Agent Hub",
+      mock_web_creator: "🌐 Créateur Web",
+      mock_cs_support: "💬 Agents de Support",
+      mock_auto_billing: "💵 Facturation Auto",
+      mock_data_analytics: "📊 Analyse de Données",
+      mock_realtime_log: "Traitement des Activités en Temps Réel",
+      mock_active_agents: "3 Agents Actifs",
+      
+      mock_log1_title: "🌐 AGENT CRÉATEUR DE SITES",
+      mock_log1_action: "Action: Génération HTML/CSS",
+      mock_log1_desc: "Création de la page pour <strong class=\"text-white\">Lumi Bakery Gourmet</strong>...",
+      mock_log1_sub1: "✓ Design mobile optimisé",
+      mock_log1_sub2: "✓ Palette HSL générée avec succès",
+      mock_log1_sub3: "⚡ Création des images d'actifs...",
+      
+      mock_log2_title: "💵 FACTURATION AUTOMATIQUE",
+      mock_time_12s: "il y a 12s",
+      mock_log2_desc: "Paiement reçu du client <strong class=\"text-white\">Carlos Mendes</strong> via PIX.",
+      mock_log2_details: "Facture #INV-1093 créée -> PDF envoyé par e-mail et exécution du webhook Slack terminée (160 €).",
+      
+      mock_log3_title: "💬 AGENT DE SUPPORT CS",
+      mock_time_2m: "il y a 2 min",
+      mock_log3_desc: "Ticket #5092 (Support technique) fermé en 4.8s.",
+      mock_log3_details: "\"Merci ! L'agent a résolu mon problème de connexion immédiatement.\" - Note: ★★★★★",
+      hero_integration: "Intégrations prêtes avec",
+      
+      ben_sub: "Automatisation Évolutive",
+      ben_heading: "Votre entreprise active jour et nuit.<br/>Sans interruption ni erreur.",
+      ben_desc: "Remplacez vos flux manuels par des agents d'IA autonomes configurés en quelques minutes. Laissez le travail répétitif à la machine rapide et précise.",
+      ben_item1_title: "Création Instantanée de Sites",
+      ben_item1_desc: "Développez des landing pages et des sites vitrines complets avec référencement SEO natif et adaptabilité mobile par simple commande textuelle.",
+      ben_item2_title: "Configuration d'Agents Autonomes",
+      ben_item2_desc: "Concevez des assistants de marque qui guident vos clients sur WhatsApp, Slack ou le chat web en exploitant vos documents internes.",
+      ben_item3_title: "Facturation & Rappels Automatiques",
+      ben_item3_desc: "Suivez les transactions, facturez par carte ou virement et envoyez des relances intelligentes sans intervention humaine.",
+      ben_item4_title: "Support Client Multilingue",
+      ben_item4_desc: "Support client disponible en 45+ langues pour répondre aux FAQs, suivre des commandes ou déléguer les tickets complexes.",
+      
+      ben_pill_cost: "Réduction des Coûts",
+      ben_pill_auto: "Automatisation Totale",
+      ben_pill_start: "Lancer l'Essai",
+      
+      chat_header: "Support Intelligent (Agent AI-CS)",
+      chat_status: "Agent en ligne et résolutif",
+      chat_client_carlos: "Client (Carlos)",
+      chat_client_q1: "Bonjour ! Comment puis-je passer à un forfait annuel et ajouter deux nouveaux comptes ?",
+      chat_agent_name: "✨ Agent AI Solutions",
+      chat_agent_r1: "Bonjour Carlos ! J'ai bien trouvé votre compte. Je peux appliquer cette mise à niveau dès maintenant. Votre forfait annuel aura 20% de remise. On continue ?",
+      chat_client_q2: "Oui, s'il vous plaît. Vous pouvez valider le paiement avec la carte enregistrée.",
+      chat_success: "Succès",
+      chat_upg_done: "✓ Mise à Niveau Réussie !",
+      chat_upg_desc: "Forfait Pro Annuel activé. Paiement de 480,00 € débité automatiquement. PDF envoyé.",
+      chat_paid: "PAYÉ",
+      chat_finalizing: "L'agent finalise la procédure...",
+      
+      show_sub: "Assistants Autonomes",
+      show_title: "Consultez et déployez vos<br/>assistants à la demande.",
+      show_cta_catalog: "Voir tout le catalogue",
+      
+      show_teal_sub: "Génération automatique de pages.",
+      show_teal_title: "Création rapide de<br/>sites web complets.",
+      show_teal_desc: "Rédigez l'idée principale, choisissez vos couleurs et laissez l'agent s'occuper de la mise en page, du SEO et de l'hébergement cloud.",
+      show_teal_foot: "Disponible en HTML/Tailwind CDN",
+      show_teal_btn: "Essayer le Créateur",
+      
+      show_purple_sub: "Développement d'assistants de marque.",
+      show_purple_title: "Des agents entraînés avec<br/>votre propre identité.",
+      show_purple_desc: "Configurez des conseillers commerciaux et des rédacteurs de contenu en téléchargeant vos PDFs et vos manuels de marque.",
+      show_purple_foot: "Activation sur WhatsApp et Chat",
+      show_purple_btn: "Configurer l'Agent",
+      
+      int_sub: "Flux Intégrés",
+      int_title: "Facturation et Support.<br/>Réunis au même endroit.",
+      int_desc: "Ne multipliez plus les outils pour facturer et répondre aux tickets de vos clients. Nos agents connectés communiquent entre eux pour automatiser ces tâches.",
+      
+      show_blue_sub: "Émission automatique et rapports.",
+      show_blue_title: "Facturation Automatique",
+      show_blue_desc: "Suivez les paiements, émettez des factures instantanées et synchronisez vos données comptables avec Hubspot et Slack en temps réel.",
+      show_blue_stat: "Total Facturé Aujourd'hui :",
+      
+      show_rose_sub: "Gestion intelligente des tickets de support.",
+      show_rose_title: "Support Client Évolutif",
+      show_rose_desc: "Vos clients reçoivent une réponse immédiate. Si la demande nécessite un avis humain, l'agent transfère le ticket avec tout son historique.",
+      show_rose_foot: "32 discussions WhatsApp en cours actuellement.",
+      
+      show_amber_title: "Planification d'Agenda & Newsletters",
+      show_amber_desc: "Connectez vos outils. L'agent organise vos réunions de ventes, rédige vos comptes-rendus Zoom et envoie des e-mails marketing personnalisés.",
+      show_amber_btn: "Découvrir de Nouvelles IAs",
+      show_quote: "\"Le logiciel d'automatisation IA le plus puissant de notre infrastructure.\"",
+      
+      met_sub: "Économies Validées",
+      met_title: "Plus de productivité.<br/>Moins de frais fixes.",
+      met_desc: "Centralisez vos processus opérationnels grâce à des agents performants et réduisez le coût de vos abonnements logiciels.",
+      met_substitutes: "Remplace des outils comme :",
+      
+      feat_web_cat: "Zéro Code ●",
+      feat_web_title: "Mise en ligne immédiate",
+      feat_web_desc: "Design généré et publication cloud instantanée sans écrire de code.",
+      feat_agent_cat: "WhatsApp & Web ●",
+      feat_agent_title: "Agents Entraînables",
+      feat_agent_desc: "Partagez vos manuels et obtenez des conseillers virtuels performants.",
+      feat_bill_cat: "Facturation ●",
+      feat_bill_title: "Paiement Direct",
+      feat_bill_desc: "Générateur automatique de factures PDF et connexions Stripe.",
+      feat_cs_cat: "Support Client ●",
+      feat_cs_title: "Réponses en 1.5s",
+      feat_cs_desc: "Algorithmes de support client pour résoudre instantanément les requêtes simples.",
+      feat_sync_cat: "Synchronisation ●",
+      feat_sync_title: "Agenda Connecté",
+      feat_sync_desc: "Planification d'appels, comptes-rendus de réunions et synthèses d'activité.",
+      feat_scale_cat: "Évolutivité ●",
+      feat_scale_title: "Actif 24h/7",
+      feat_scale_desc: "Des agents qui travaillent en continu à la vitesse de la lumière.",
+      
+      stat_p1_lbl: "Réponses Client",
+      stat_p1_desc: "de réduction des délais de réponse du support",
+      stat_p2_lbl: "Sites & Landing Pages",
+      stat_p2_desc: "plus rapides à créer et mettre en ligne",
+      stat_p3_lbl: "Économie Moyenne",
+      stat_p3_desc: "d'économies par an sur les abonnements SaaS",
+      
+      cli_sub: "Retours Clients",
+      cli_title: "Adopté par les startups et<br/>les entreprises innovantes.",
+      cli_vercel_quote: "\"Nous avons connecté les agents de support d'AI Solutions sur notre Slack. En deux semaines, nous avons résolu 85% des questions techniques sans embauche supplémentaire.\"",
+      cli_vercel_cta: "Lire l'étude de cas →",
+      cli_c1_desc: "\"La création de landing pages en un clic a révolutionné nos lancements marketing. Les déploiements cloud sont parfaits.\"",
+      cli_c2_desc: "\"La facturation automatique Stripe nous fait gagner plus de 15 heures de travail administratif chaque semaine.\"",
+      cli_c3_desc: "\"L'agent WhatsApp répond instantanément aux FAQs et ne crée un ticket Linear que si cela est nécessaire.\"",
+      
+      cta_title: "Prêt à automatiser ?<br/>Créez votre compte gratuitement.",
+      cta_desc: "Enregistrez vos équipes, testez notre créateur de sites IA, activez vos agents de support et profitez d'une période d'essai de 14 jours.",
+      cta_app_options: "Disponible sur nos applications Mac et Windows ainsi que sur notre tableau de bord mobile.",
+      
+      cta_api_title: "API AI Solutions pour Développeurs",
+      cta_api_desc: "Utilisez notre API REST ou nos SDKs Node.js et Python pour connecter vos serveurs.",
+      cta_visual_title: "Générateur Visuel d'Agents",
+      cta_visual_active: "Actif",
+      cta_visual_p1_lbl: "1. Prompt de l'Agent",
+      cta_visual_p1_desc: "\"Conçois un site web pour un vendeur de vins biologiques.\"",
+      cta_visual_p2_lbl: "2. Palette de Couleurs",
+      cta_visual_p2_desc: "Thème Bordeaux & Crème",
+      cta_visual_p3_lbl: "3. Connecteurs de Services",
+      cta_visual_p3_opt1: "Paiements Stripe",
+      cta_visual_p3_opt2: "Agent WhatsApp",
+      cta_visual_btn: "Déployer le Site & l'Agent",
+      
+      foot_solutions_cat: "Solutions",
+      foot_dev_cat: "Espace DEV",
+      foot_prod_cat: "Tarifs & Plans",
+      foot_corp_cat: "Entreprise",
+      foot_int_cat: "Connecteurs API",
+      foot_developed_by: "Développé avec rigueur par",
+      foot_terms: "Données & Confidentialité",
+      foot_security: "Sécurité",
+      foot_cookies: "Gestion des Cookies",
+      foot_accessibility: "Accessibilité",
+      foot_copyright: "© 2026 AI Solutions Labs, Inc."
+    },
+    es: {
+      nav_solutions: "Soluciones",
+      nav_resources: "Recursos",
+      nav_benefits: "Beneficios",
+      nav_metrics: "Métricas",
+      nav_clients: "Clientes",
+      nav_signin: "Acceder",
+      nav_signup: "Empezar Gratis",
+      
+      sol_atendimento_cliente: "Atención al cliente automatizada",
+      sol_automacao_marcacoes: "Automatización de citas",
+      sol_criacao_conteudo: "Creación de contenido",
+      sol_gestao_reviews: "Gestión de reseñas",
+      sol_sistemas_ai_internos: "Sistemas de IA internos",
+      sol_automacao_tarefas: "Automatización de tareas repetitivas",
+      sol_propostas_orcamentos: "Generación de propuestas y presupuestos",
+      sol_ai_recrutamento: "IA para contratación",
+      sol_followup_leads: "Seguimiento automático de prospectos",
+      sol_transcricao_reunioes: "Transcripción y resumen de reuniones",
+      sol_automacao_faturacao: "Automatización de facturación",
+      sol_dashboards_relatorios: "Paneles y informes automáticos",
+      sol_sistemas_personalizados: "Sistemas personalizados simples",
+      
+      hero_used_by: "Utilizado por equipos en",
+      hero_title: "Automatice su operación.<br/><span class=\"bg-gradient-to-r from-indigo-400 via-violet-400 to-emerald-400 bg-clip-text text-transparent\">Cree con inteligencia.</span>",
+      hero_subtitle: "AI Solutions implementa agentes autónomos a la carta en su empresa para diseñar páginas web completas, facturar de forma automatizada y gestionar su soporte 24/7.",
+      hero_cta1: "Crear mi primer agente",
+      hero_cta2: "Ver demostración interactiva",
+      
+      mock_fl1_title: "Sitio Creado",
+      mock_fl1_badge: "ONLINE",
+      mock_fl2_title: "Facturación",
+      mock_fl2_desc: "Factura #INV-2049 enviada",
+      mock_agents_status: "AGENTES IA: ACTIVOS",
+      mock_central_panel: "Panel Central",
+      mock_agent_hub: "AI Solutions Agent Hub",
+      mock_web_creator: "🌐 Creador Web",
+      mock_cs_support: "💬 Agentes de Soporte",
+      mock_auto_billing: "💵 Facturación Auto",
+      mock_data_analytics: "📊 Análisis de Datos",
+      mock_realtime_log: "Procesando Actividades en Tiempo Real",
+      mock_active_agents: "3 Agentes Ejecutándose",
+      
+      mock_log1_title: "🌐 AGENTE CREADOR DE SITIOS",
+      mock_log1_action: "Acción: Generando HTML/CSS",
+      mock_log1_desc: "Creando sitio para <strong class=\"text-white\">Lumi Bakery Gourmet</strong>...",
+      mock_log1_sub1: "✓ Diseño móvil optimizado",
+      mock_log1_sub2: "✓ Paleta de colores HSL generada",
+      mock_log1_sub3: "⚡ Generando imágenes de recursos...",
+      
+      mock_log2_title: "💵 FACTURACIÓN AUTOMÁTICA",
+      mock_time_12s: "hace 12s",
+      mock_log2_desc: "Pago del cliente <strong class=\"text-white\">Carlos Mendes</strong> recibido vía PIX.",
+      mock_log2_details: "Factura automatizada #INV-1093 creada -> Enviado PDF de confirmación e integración de Slack ejecutada ($160.00).",
+      
+      mock_log3_title: "💬 AGENTE DE SOPORTE CS",
+      mock_time_2m: "hace 2 min",
+      mock_log3_desc: "Ticket #5092 (Soporte técnico) cerrado en 4.8s.",
+      mock_log3_details: "\"¡Gracias! El agente resolvió mi problema de inicio de sesión inmediatamente.\" - Nota: ★★★★★",
+      hero_integration: "Integraciones listas con",
+      
+      ben_sub: "Automatización Escalable",
+      ben_heading: "Su negocio activo día y noche.<br/>Sin interrupciones ni errores.",
+      ben_desc: "Reemplace flujos manuales complejos con agentes autónomos configurados en minutos. Deje la rutina a un software ultra rápido y de máxima precisión.",
+      ben_item1_title: "Sitios Web Creados al Instante",
+      ben_item1_desc: "Desarrolle landing pages y sitios corporativos adaptados con SEO nativo y diseño responsivo enviando simples instrucciones de texto.",
+      ben_item2_title: "Configuración de Agentes Autónomos",
+      ben_item2_desc: "Cree asistentes de marca que guíen a sus usuarios por WhatsApp, Slack o el chat web basándose en sus manuales internos.",
+      ben_item3_title: "Facturación & Cobros Automáticos",
+      ben_item3_desc: "Siga las transacciones, facture por tarjeta o transferencia y envíe recordatorios automáticos sin intervención manual.",
+      ben_item4_title: "Soporte al Cliente Multilingüe",
+      ben_item4_desc: "Soporte disponible en 45+ idiomas para responder a FAQs frecuentes, rastrear pedidos y derivar incidencias complejas.",
+      
+      ben_pill_cost: "Menores Costos",
+      ben_pill_auto: "Automatización Total",
+      ben_pill_start: "Comenzar Prueba",
+      
+      chat_header: "Soporte Inteligente (Agente AI-CS)",
+      chat_status: "Agente activo y resolviendo",
+      chat_client_carlos: "Cliente (Carlos)",
+      chat_client_q1: "¡Hola! ¿Cómo cambio el plan de mi equipo a la modalidad anual y añado dos accesos más?",
+      chat_agent_name: "✨ Agente AI Solutions",
+      chat_agent_r1: "¡Hola Carlos! Encontré tu cuenta. Puedo aplicar esta actualización de inmediato con un 20% de descuento anual. ¿Procedemos?",
+      chat_client_q2: "Sí, por favor. Autorizo el cobro en el método de facturación automático guardado.",
+      chat_success: "Éxito",
+      chat_upg_done: "✓ ¡Actualización Completada!",
+      chat_upg_desc: "Cambiado a Plan Pro Anual. Pago de $480.00 procesado automáticamente. PDF enviado.",
+      chat_paid: "PAGADO",
+      chat_finalizing: "El agente está finalizando el proceso...",
+      
+      show_sub: "Asistentes Autónomos",
+      show_title: "Consulte e implemente sus<br/>asistentes a la carta.",
+      show_cta_catalog: "Ver catálogo completo",
+      
+      show_teal_sub: "Generación automática de páginas.",
+      show_teal_title: "Creación rápida de<br/>sitios web completos.",
+      show_teal_desc: "Describa su idea, defina las directrices de color y deje que el agente diseñe la maqueta, optimice el SEO y publique en el cloud.",
+      show_teal_foot: "Disponible en HTML/Tailwind CDN",
+      show_teal_btn: "Probar el Creador",
+      
+      show_purple_sub: "Desarrollo rápido de asistentes de marca.",
+      show_purple_title: "Agentes personalizados con<br/>el tono de su marca.",
+      show_purple_desc: "Configure asesores comerciales y redactores cargando sus especificaciones en formato PDF.",
+      show_purple_foot: "Activación por WhatsApp y Chat Web",
+      show_purple_btn: "Configurar Agente",
+      
+      int_sub: "Flujos Integrados",
+      int_title: "Facturación y Soporte.<br/>Reunidos en un mismo lugar.",
+      int_desc: "No use decenas de herramientas sueltas para facturar y responder a tickets. Nuestros agentes se comunican de forma nativa para automatizar todo el proceso comercial.",
+      
+      show_blue_sub: "Emisión automática e informes.",
+      show_blue_title: "Facturación Automática",
+      show_blue_desc: "Siga los cobros, emita facturas en formato PDF al instante y sincronice los datos con Hubspot y Slack automáticamente.",
+      show_blue_stat: "Total Facturado Hoy:",
+      
+      show_rose_sub: "Gestión inteligente de incidencias técnicas.",
+      show_rose_title: "Atención al Cliente Escalable",
+      show_rose_desc: "Sus clientes reciben respuestas al instante. Si la consulta requiere soporte técnico humano, el agente lo deriva con todo su contexto.",
+      show_rose_foot: "32 chats de soporte activos en WhatsApp ahora.",
+      
+      show_amber_title: "Planificación de Citas & Campañas",
+      show_amber_desc: "Conecte sus calendarios. El agente organiza sus reuniones comerciales, escribe resúmenes de llamadas Zoom y envía newsletters.",
+      show_amber_btn: "Explorar Nuevas IAs",
+      show_quote: "\"El software de automatización inteligente más potente que hemos implantado en nuestra infraestructura.\"",
+      
+      met_sub: "Ahorro Comprobado",
+      met_title: "Más productividad.<br/>Menos costes fijos.",
+      met_desc: "Centralice sus operaciones con agentes autónomos avanzados y reduzca el coste de sus licencias de software comerciales.",
+      met_substitutes: "Sustituye herramientas como:",
+      
+      feat_web_cat: "Zero Code ●",
+      feat_web_title: "Lanzamiento Inmediato",
+      feat_web_desc: "Diseño generado y deploy cloud instantáneo sin escribir una línea de código.",
+      feat_agent_cat: "WhatsApp & Web ●",
+      feat_agent_title: "Agentes Entrenables",
+      feat_agent_desc: "Cargue sus manuales corporativos y obtenga un consultor virtual especializado.",
+      feat_bill_cat: "Facturación ●",
+      feat_bill_title: "Cobro Directo",
+      feat_bill_desc: "Generador automático de facturas PDF y pasarelas de pago Stripe.",
+      feat_cs_cat: "Soporte Técnico ●",
+      feat_cs_title: "Respuestas en 1.5s",
+      feat_cs_desc: "Algoritmos avanzados para gestionar y resolver las dudas más habituales.",
+      feat_sync_cat: "Sincronización ●",
+      feat_sync_title: "Agenda Conectada",
+      feat_sync_desc: "Planificación de llamadas, minutas automáticas e informes ejecutivos de reuniones.",
+      feat_scale_cat: "Escalabilidad ●",
+      feat_scale_title: "Activo 24/7",
+      feat_scale_desc: "Agentes trabajando ininterrumpidamente a la velocidad de la luz.",
+      
+      stat_p1_lbl: "Respuestas al Cliente",
+      stat_p1_desc: "de reducción del tiempo de espera en el soporte técnico",
+      stat_p2_lbl: "Sitios & Landing Pages",
+      stat_p2_desc: "más rápidos de diseñar, crear y lanzar online",
+      stat_p3_lbl: "Ahorro Operativo Medio",
+      stat_p3_desc: "ahorrados al año en suscripciones de software",
+      
+      cli_sub: "Opiniones de Clientes",
+      cli_title: "El preferido por startups y<br/>empresas innovadoras.",
+      cli_vercel_quote: "\"Implementamos los asistentes de soporte en Slack. En dos semanas resolvimos el 85% de las dudas de desarrollo sin aumentar el equipo.\"",
+      cli_vercel_cta: "Ver estudio de caso →",
+      cli_c1_desc: "\"El creador de landing pages en un clic simplificó nuestras campañas de marketing. Los despliegues son perfectos.\"",
+      cli_c2_desc: "\"La facturación automática nos ahorra más de 15 horas de tareas administrativas cada semana.\"",
+      cli_c3_desc: "\"El bot de WhatsApp responde al momento y solo abre tickets en Linear cuando es imprescindible.\"",
+      
+      cta_title: "¿Preparado para automatizar?<br/>Cree su cuenta gratis.",
+      cta_desc: "Registre a su equipo, pruebe el diseñador de webs IA, active sus agentes de atención y disfrute de 14 días de prueba sin coste.",
+      cta_app_options: "Disponible para ordenadores Mac y Windows y en nuestro cuadro de mando para móviles.",
+      
+      cta_api_title: "API AI Solutions para Desarrolladores",
+      cta_api_desc: "Utilice nuestra API de tipo REST o los SDKs para Node.js y Python para conectar sus servidores.",
+      cta_visual_title: "Creador Visual de Agentes",
+      cta_visual_active: "Activo",
+      cta_visual_p1_lbl: "1. Prompt del Agente",
+      cta_visual_p1_desc: "\"Diseña una landing page para una tienda de vinos ecológicos.\"",
+      cta_visual_p2_lbl: "2. Paleta de Colores",
+      cta_visual_p2_desc: "Tema Burdeos & Crema",
+      cta_visual_p3_lbl: "3. Servicios Conectados",
+      cta_visual_p3_opt1: "Cobros con Stripe",
+      cta_visual_p3_opt2: "Agente WhatsApp",
+      cta_visual_btn: "Desplegar Sitio & Agente",
+      
+      foot_solutions_cat: "Soluciones",
+      foot_dev_cat: "Espacio DEV",
+      foot_prod_cat: "Precios y Planes",
+      foot_corp_cat: "Compañía",
+      foot_int_cat: "Conectores API",
+      foot_developed_by: "Desarrollado con rigor por",
+      foot_terms: "Privacidad y Condiciones",
+      foot_security: "Seguridad Corporativa",
+      foot_cookies: "Gestión de Cookies",
+      foot_accessibility: "Accesibilidad",
+      foot_copyright: "© 2026 AI Solutions Labs, Inc."
+    },
+    de: {
+      nav_solutions: "Lösungen",
+      nav_resources: "Ressourcen",
+      nav_benefits: "Vorteile",
+      nav_metrics: "Metriken",
+      nav_clients: "Kunden",
+      nav_signin: "Anmelden",
+      nav_signup: "Gratis starten",
+      
+      sol_atendimento_cliente: "Automatisierter Kundenservice",
+      sol_automacao_marcacoes: "Buchungsautomatisierung",
+      sol_criacao_conteudo: "Inhaltserstellung",
+      sol_gestao_reviews: "Bewertungsmangement",
+      sol_sistemas_ai_internos: "Interne KI-Systeme",
+      sol_automacao_tarefas: "Automatisierung von Routineaufgaben",
+      sol_propostas_orcamentos: "Erstellung von Angeboten & Budgets",
+      sol_ai_recrutamento: "KI für die Personalbeschaffung",
+      sol_followup_leads: "Automatisches Lead-Follow-up",
+      sol_transcricao_reunioes: "Meeting-Transkription & Zusammenfassung",
+      sol_automacao_faturacao: "Abrechnungs- & Dokumentenautomatisierung",
+      sol_dashboards_relatorios: "Automatische Dashboards & Berichte",
+      sol_sistemas_personalizados: "Einfache maßgeschneiderte Systeme",
+      
+      hero_used_by: "Genutzt von Teams bei",
+      hero_title: "Automatisieren Sie Ihre Prozesse.<br/><span class=\"bg-gradient-to-r from-indigo-400 via-violet-400 to-emerald-400 bg-clip-text text-transparent\">Erstellen Sie intelligent.</span>",
+      hero_subtitle: "AI Solutions stellt autonome Agenten in Ihrem Unternehmen bereit, die komplette Websites erstellen, Abrechnungen automatisieren und Kundensupport rund um die Uhr bieten.",
+      hero_cta1: "Meinen ersten Agenten erstellen",
+      hero_cta2: "Interaktive Demo ansehen",
+      
+      mock_fl1_title: "Website Erstellt",
+      mock_fl1_badge: "ONLINE",
+      mock_fl2_title: "Abrechnung",
+      mock_fl2_desc: "Rechnung #INV-2049 gesendet",
+      mock_agents_status: "KI-AGENTEN: AKTIV",
+      mock_central_panel: "Zentrale",
+      mock_agent_hub: "AI Solutions Agent Hub",
+      mock_web_creator: "🌐 Website-Ersteller",
+      mock_cs_support: "💬 CS-Support-Agenten",
+      mock_auto_billing: "💵 Auto-Abrechnung",
+      mock_data_analytics: "📊 Datenanalyse",
+      mock_realtime_log: "Aktivitäten in Echtzeit verarbeiten",
+      mock_active_agents: "3 Agenten aktiv",
+      
+      mock_log1_title: "🌐 WEBSITE-ERSTELLER AGENT",
+      mock_log1_action: "Aktion: Generiere HTML/CSS",
+      mock_log1_desc: "Erstelle Landingpage für <strong class=\"text-white\">Lumi Bakery Gourmet</strong>...",
+      mock_log1_sub1: "✓ Mobiles Design optimiert",
+      mock_log1_sub2: "✓ HSL-basierte Farbpalette generiert",
+      mock_log1_sub3: "⚡ Generiere Asset-Bilder...",
+      
+      mock_log2_title: "💵 AUTOMATISCHE ABRECHNUNG",
+      mock_time_12s: "vor 12 Sek",
+      mock_log2_desc: "Zahlung von Kunde <strong class=\"text-white\">Carlos Mendes</strong> per PIX erhalten.",
+      mock_log2_details: "Automatische Rechnung #INV-1093 erstellt -> Bestätigungs-PDF per E-Mail gesendet & Slack-Webhook ausgeführt (160 €).",
+      
+      mock_log3_title: "💬 CS-SUPPORT AGENT",
+      mock_time_2m: "vor 2 Min",
+      mock_log3_desc: "Support-Ticket #5092 (Technischer Support) in 4.8s geschlossen.",
+      mock_log3_details: "\"Danke! Der Agent hat mein Login-Problem sofort gelöst.\" - Bewertung: ★★★★★",
+      hero_integration: "Bereite Integrationen mit",
+      
+      ben_sub: "Skalierbare Automatisierung",
+      ben_heading: "Ihr Geschäft läuft Tag und Nacht.<br/>Ohne Unterbrechung oder Fehler.",
+      ben_desc: "Ersetzen Sie komplexe manuelle Arbeitsabläufe durch autonome Agenten, die in Minuten konfiguriert sind. Überlassen Sie Routineaufgaben der schnellen und präzisen KI.",
+      ben_item1_title: "Sofortige Website-Erstellung",
+      ben_item1_desc: "Entwickeln Sie Landingpages, Portfolios und Firmenwebsites mit SEO und responsivem Design durch einfache Texteingaben.",
+      ben_item2_title: "Autonome Agenten-Konfiguration",
+      ben_item2_desc: "Konfigurieren Sie maßgeschneiderte virtuelle Markenassistenten, die Kunden via WhatsApp, Slack oder Chat beraten.",
+      ben_item3_title: "Automatische Abrechnung & Mahnung",
+      ben_item3_desc: "Zahlungen verfolgen, Rechnungen per Karte oder Überweisung ausstellen und Zahlungserinnerungen versenden - ohne manuellen Aufwand.",
+      ben_item4_title: "Mehrsprachiger Kundenservice",
+      ben_item4_desc: "Kundensupport in über 45 Sprachen zur sofortigen Beantwortung von FAQs, Bestellverfolgung und Ticket-Weiterleitung.",
+      
+      ben_pill_cost: "Kostensenkung",
+      ben_pill_auto: "Vollautomatisierung",
+      ben_pill_start: "Jetzt testen",
+      
+      chat_header: "Intelligenter Support (AI-CS Agent)",
+      chat_status: "Agent aktiv & lösungsbereit",
+      chat_client_carlos: "Kunde (Carlos)",
+      chat_client_q1: "Hallo! Wie kann ich das Paket meines Teams auf das Jahresmodell umstellen und zwei neue Plätze hinzufügen?",
+      chat_agent_name: "✨ AI Solutions Agent",
+      chat_agent_r1: "Hallo Carlos! Ich habe Ihr Konto gefunden. Ich kann dieses Upgrade sofort durchführen und 20% Rabatt gewähren. Sollen wir fortfahren?",
+      chat_client_q2: "Ja, bitte. Buchen Sie den Betrag über die hinterlegte Zahlungsmethode ab.",
+      chat_success: "Erfolgreich",
+      chat_upg_done: "✓ Upgrade abgeschlossen!",
+      chat_upg_desc: "Auf Jahres-Pro-Paket umgestellt. Buchung von 480,00 € erfolgreich verarbeitet. PDF gesendet.",
+      chat_paid: "BEZAHLT",
+      chat_finalizing: "KI-Agent schließt Vorgang ab...",
+      
+      show_sub: "Autonome Assistenten",
+      show_title: "Konsultieren und aktivieren Sie<br/>Ihre Agenten auf Abruf.",
+      show_cta_catalog: "Gesamten KI-Katalog ansehen",
+      
+      show_teal_sub: "Automatische Webseiten-Generierung.",
+      show_teal_title: "Schnelle Erstellung von<br/>kompletten Webseiten.",
+      show_teal_desc: "Beschreiben Sie das Konzept, definieren Sie die Farben und der Agent entwirft das Layout, optimiert das SEO und stellt die Seite ins Netz.",
+      show_teal_foot: "Verfügbar in HTML/Tailwind CDN",
+      show_teal_btn: "Ersteller testen",
+      
+      show_purple_sub: "Schnelle Entwicklung von Marken-Personas.",
+      show_purple_title: "Agenten trainiert mit der<br/>Stimme Ihrer Marke.",
+      show_purple_desc: "Erstellen Sie virtuelle Berater und Texter, indem Sie Produkt-PDFs und Markenrichtlinien hochladen.",
+      show_purple_foot: "Aktivierung via WhatsApp & Web-Chat",
+      show_purple_btn: "Agent konfigurieren",
+      
+      int_sub: "Integrierte Abläufe",
+      int_title: "Abrechnung und Support.<br/>An einem Ort konsolidiert.",
+      int_desc: "Verwenden Sie nicht Dutzende separater Tools, um Rechnungen zu schreiben und Tickets zu bearbeiten. Unsere vernetzten Agenten erledigen den gesamten Prozess nahtlos.",
+      
+      show_blue_sub: "Automatische Rechnungen und Berichte.",
+      show_blue_title: "Automatische Abrechnung",
+      show_blue_desc: "Zahlungen verfolgen, Rechnungen direkt als PDF senden und Buchungsdaten mit Hubspot und Slack in Echtzeit synchronisieren.",
+      show_blue_stat: "Heute abrechnet gesamt:",
+      
+      show_rose_sub: "Intelligente Verwaltung von Support-Tickets.",
+      show_rose_title: "Skalierbarer Kundensupport",
+      show_rose_desc: "Ihre Kunden erhalten sofort Antworten. Wenn ein Problem ein Eingreifen erfordert, leitet der Agent den Fall mit Kontext an ein Teammitglied weiter.",
+      show_rose_foot: "32 aktive WhatsApp-Support-Chats im Moment.",
+      
+      show_amber_title: "Terminplanung & Kampagnen-Versand",
+      show_amber_desc: "Kalender integrieren. Der Agent organisiert Geschäftstermine, schreibt Zusammenfassungen nach Zoom-Meetings und versendet Newsletter.",
+      show_amber_btn: "Neue KIs entdecken",
+      show_quote: "\"Die intelligenteste Automatisierungs-Software, die wir in unserer digitalen Infrastruktur implementiert haben.\"",
+      
+      met_sub: "Geprüfte Ersparnis",
+      met_title: "Mehr Produktivität.<br/>Weniger Fixkosten.",
+      met_desc: "Zentralisieren Sie Ihre Abläufe mit autonomen Agenten und reduzieren Sie die Lizenzkosten Ihrer Software-Abos.",
+      met_substitutes: "Ersetzt Tools wie:",
+      
+      feat_web_cat: "Zéro Code ●",
+      feat_web_title: "Sofortiger Start",
+      feat_web_desc: "Automatisch generiertes Design und Cloud-Deploy ohne Programmieraufwand.",
+      feat_agent_cat: "WhatsApp & Web ●",
+      feat_agent_title: "Trainierbare Agenten",
+      feat_agent_desc: "Markenhandbücher hochladen und einen virtuellen Fachberater erhalten.",
+      feat_bill_cat: "Abrechnung ●",
+      feat_bill_title: "Direkte Zahlung",
+      feat_bill_desc: "Automatischer PDF-Rechnungsersteller und Stripe-Verbindungen.",
+      feat_cs_cat: "Kundenservice ●",
+      feat_cs_title: "Antworten in 1.5s",
+      feat_cs_desc: "KI-Algorithmen zur sofortigen Beantwortung einfacher Kundenfragen.",
+      feat_sync_cat: "Synchronisation ●",
+      feat_sync_title: "Kalender-Sync",
+      feat_sync_desc: "Anrufplanung, automatisierte Sitzungsprotokolle und Berichte.",
+      feat_scale_cat: "Skalierbarkeit ●",
+      feat_scale_title: "Aktiv 24/7",
+      feat_scale_desc: "Agenten, die ununterbrochen mit Lichtgeschwindigkeit für Sie arbeiten.",
+      
+      stat_p1_lbl: "Kunden-Reaktionszeit",
+      stat_p1_desc: "Reduzierung der Wartezeiten in der Kundenservice-Schlange",
+      stat_p2_lbl: "Websites & Landing Pages",
+      stat_p2_desc: "schneller zu entwerfen, zu erstellen und zu launchen",
+      stat_p3_lbl: "Mittlere Einsparung",
+      stat_p3_desc: "jährlich eingespart bei Software-Abonnements",
+      
+      cli_sub: "Kundenbewertungen",
+      cli_title: "Beliebt bei Startups und<br/>innovativen Unternehmen.",
+      cli_vercel_quote: "\"Wir haben die Support-Agenten auf Slack verbunden. In zwei Wochen haben wir 85% der Entwicklerfragen ohne zusätzliche Mitarbeiter gelöst.\"",
+      cli_vercel_cta: "Fallstudie lesen →",
+      cli_c1_desc: "\"Der One-Click-Landingpage-Ersteller hat unsere Marketingkampagnen vereinfacht. Die Deployments sind perfekt.\"",
+      cli_c2_desc: "\"Die automatische Abrechnung spart unserem Finanzteam wöchentlich über 15 Stunden administrative Arbeit.\"",
+      cli_c3_desc: "\"Der WhatsApp-Assistent antwortet sofort und öffnet Tickets in Linear nur, wenn es wirklich nötig ist.\"",
+      
+      cta_title: "Bereit zum Automatisieren?<br/>Erstellen Sie Ihr Gratis-Konto.",
+      cta_desc: "Registrieren Sie Ihr Team, testen Sie den Webseiten-Ersteller, aktivieren Sie Support-Agenten und nutzen Sie 14 Tage lang den vollen Funktionsumfang kostenlos.",
+      cta_app_options: "Verfügbar für macOS und Windows sowie als Mobile-Dashboard für unterwegs.",
+      
+      cta_api_title: "AI Solutions API für Entwickler",
+      cta_api_desc: "Nutzen Sie unsere REST-API oder die Node.js/Python SDKs, um Server direkt anzubinden.",
+      cta_visual_title: "Visueller Agenten-Baukasten",
+      cta_visual_active: "Aktiv",
+      cta_visual_p1_lbl: "1. Prompt-Eingabe",
+      cta_visual_p1_desc: "\"Entwirf eine Landingpage für einen Bio-Weinhandel.\"",
+      cta_visual_p2_lbl: "2. Farbpaletten-Setup",
+      cta_visual_p2_desc: "Thema Bordeaux & Creme",
+      cta_visual_p3_lbl: "3. Service-Konnektoren",
+      cta_visual_p3_opt1: "Stripe-Zahlungen",
+      cta_visual_p3_opt2: "WhatsApp-Agent",
+      cta_visual_btn: "Website & Agent deployen",
+      
+      foot_solutions_cat: "Lösungen",
+      foot_dev_cat: "DEV-Bereich",
+      foot_prod_cat: "Preise & Tarife",
+      foot_corp_cat: "Unternehmen",
+      foot_int_cat: "API-Konnektoren",
+      foot_developed_by: "Mit Sorgfalt entwickelt von",
+      foot_terms: "Datenschutz & Bedingungen",
+      foot_security: "Sicherheitsrichtlinien",
+      foot_cookies: "Cookies-Einstellung",
+      foot_accessibility: "Barrierefreiheit",
+      foot_copyright: "© 2026 AI Solutions Labs, Inc."
+    }
+  };
+
+  // ACTIVE LANGUAGE CONTROLLER
+  function setLanguage(lang) {
+    // Save to localStorage
+    localStorage.setItem('selectedLanguage', lang);
+    
+    // Set active flag and code in switcher
+    const flags = { pt: '🇵🇹', en: '🇬🇧', fr: '🇫🇷', es: '🇪🇸', de: '🇩🇪' };
+    const codes = { pt: 'PT', en: 'EN', fr: 'FR', es: 'ES', de: 'DE' };
+    
+    document.getElementById('current-lang-flag').innerText = flags[lang];
+    document.getElementById('current-lang-code').innerText = codes[lang];
+    
+    // Set HTML lang attribute
+    document.documentElement.lang = lang === 'pt' ? 'pt-BR' : lang;
+    
+    // Apply translations
+    const elements = document.querySelectorAll('[data-i18n]');
+    elements.forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (translations[lang] && translations[lang][key]) {
+        el.innerHTML = translations[lang][key];
+      }
+    });
+  }
+
+  // Load language preference
+  document.addEventListener('DOMContentLoaded', () => {
+    const savedLang = localStorage.getItem('selectedLanguage') || 'pt';
+    setLanguage(savedLang);
+    
+    // Click toggle for Language switcher
+    const langBtn = document.getElementById('lang-btn');
+    const langDropdown = document.getElementById('lang-dropdown');
+    const langArrow = document.getElementById('lang-arrow');
+
+    if (langBtn && langDropdown) {
+      langBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isHidden = langDropdown.classList.toggle('hidden');
+        if (langArrow) {
+          langArrow.style.transform = isHidden ? 'rotate(0deg)' : 'rotate(180deg)';
+        }
+      });
+      
+      document.addEventListener('click', () => {
+        langDropdown.classList.add('hidden');
+        if (langArrow) {
+          langArrow.style.transform = 'rotate(0deg)';
+        }
+      });
+    }
+
+    // Solutions dropdown toggle fallback for mobile
+    const solutionsTrigger = document.getElementById('solutions-dropdown-trigger');
+    const solutionsMenu = document.getElementById('solutions-dropdown-menu');
+
+    if (solutionsTrigger && solutionsMenu) {
+      solutionsTrigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        solutionsMenu.classList.toggle('hidden');
+      });
+
+      document.addEventListener('click', () => {
+        solutionsMenu.classList.add('hidden');
+      });
+    }
+  });
+</script>
+
+</body>
+</html>
